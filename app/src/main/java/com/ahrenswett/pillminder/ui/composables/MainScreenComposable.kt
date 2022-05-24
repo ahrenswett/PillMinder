@@ -20,10 +20,10 @@ import com.ahrenswett.pillminder.classes.Bottle
 import com.ahrenswett.pillminder.R
 
 @Composable
-fun MainScreen(navController: NavController, bottleList: List<Bottle>) {
+fun MainScreen(navController: NavController, bottleList: List<Bottle>?) {
     remember { mutableStateOf(bottleList) }
     Column(Modifier.fillMaxSize(), Arrangement.SpaceEvenly) {
-        if(bottleList.isNotEmpty()){
+        if(bottleList?.isNotEmpty() == true){
             Card(
                 shape = RoundedCornerShape(25.dp),
                 modifier = Modifier

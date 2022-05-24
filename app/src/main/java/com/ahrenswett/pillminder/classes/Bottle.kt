@@ -4,12 +4,12 @@ import java.util.*
 
 class Bottle( val consumable: Consumable,
               val prescription : Prescription?,
-              var reminder: Reminder?,
+              var reminder: Reminder,
               var quantityInBottle: Int,
               val expirationDate : Date?,
               var startDate : Date)
 
-enum class Mesurement {
+enum class Measurement {
     MILLIGRAMS,
     FORM,
     SCOOP,
