@@ -36,8 +36,7 @@ fun MainScreen(navController: NavController, bottleList: List<Bottle>) {
             ){
                 Column(
                     Modifier
-                        .fillMaxSize()
-                        .background(color = Color.Gray),
+                        .fillMaxSize(),
                     Arrangement.SpaceEvenly
                 ) {
                     Text(
@@ -60,8 +59,7 @@ fun MainScreen(navController: NavController, bottleList: List<Bottle>) {
         ){
             Column(
                 Modifier
-                    .fillMaxSize()
-                    .background(color = Color.Gray),
+                    .fillMaxSize(),
                 Arrangement.SpaceEvenly
             ) {
                 Text(
