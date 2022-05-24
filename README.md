@@ -1,5 +1,8 @@
 # PillMinder
 Simple pill reminder app that is persistant at reminding the user(s) to take or Administer medication.
 
-![MainScreen](readme_res/main.jpg?raw=true "Main")
+## MainScreen
+<img src="https://github.com/ahrenswett/PillMinder/blob/main/readme_res/main.png?raw=true" width="200" />
 
+## List screen
+<img src="https://github.com/ahrenswett/PillMinder/blob/main/readme_res/list.png?raw=true" width="200" />
