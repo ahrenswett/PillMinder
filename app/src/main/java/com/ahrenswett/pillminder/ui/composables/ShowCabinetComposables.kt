@@ -13,6 +13,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.ahrenswett.pillminder.classes.Bottle
+import com.ahrenswett.pillminder.classes.Cabinet
 import java.util.*
 
 
@@ -22,9 +23,9 @@ import java.util.*
 
 
 @Composable
-fun ShowCabinet(navController: NavController, bottleList: List<Bottle>){
+fun ShowCabinetList(navController: NavController, cabinet: Cabinet){
     LazyColumn{
-        items(bottleList){
+        items(cabinet.bottleList){
             ReminderInfo(bottle = it)
         }
     }
