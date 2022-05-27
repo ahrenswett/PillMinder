@@ -9,7 +9,7 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.ahrenswett.pillminder.classes.*
+import com.ahrenswett.pillminder.entities.*
 import com.ahrenswett.pillminder.ui.theme.PillMinderTheme
 import java.sql.Time
 import java.util.*
@@ -26,11 +26,13 @@ var bottle = Bottle(
     expirationDate = Date(2022,12,28),
     startDate = Date(2022,5,9),
     prescription = Prescription(
+        dose = Dose(1000, Measurement.MILLIGRAMS),
         volumeToTake = 3,
         prescribingDoc = "Chee M."
     ),
+    measurement = null,
     quantityInBottle = 270,
-    reminder = Reminder(ArrayList(),)
+    reminder = Reminder(ArrayList(),Time(900))
 )
 
 var bottleList : List<Bottle> = listOf(bottle)

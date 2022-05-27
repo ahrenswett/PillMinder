@@ -12,8 +12,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.ahrenswett.pillminder.classes.Bottle
-import com.ahrenswett.pillminder.classes.Cabinet
+import com.ahrenswett.pillminder.entities.Bottle
+import com.ahrenswett.pillminder.entities.Cabinet
 import java.util.*
 
 
