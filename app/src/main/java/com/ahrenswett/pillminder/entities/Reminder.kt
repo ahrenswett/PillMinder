@@ -1,4 +1,4 @@
-package com.ahrenswett.pillminder.classes
+package com.ahrenswett.pillminder.entities
 
 import java.sql.Time
 
@@ -13,10 +13,6 @@ import java.sql.Time
 
 
  */
-
-
-
-
 
 class Reminder ( var reminderTimes : ArrayList<Time>, val endReminder : Time){
 //TODO: reminder must show full screen over other apps until one of 2 options selected

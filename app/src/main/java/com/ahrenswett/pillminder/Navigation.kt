@@ -4,11 +4,9 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.ahrenswett.pillminder.classes.*
 import com.ahrenswett.pillminder.ui.composables.AddConsumable
 import com.ahrenswett.pillminder.ui.composables.MainScreen
 import com.ahrenswett.pillminder.ui.composables.ShowCabinetList
-import java.util.*
 
 
 @Composable
@@ -18,9 +16,9 @@ fun Navagation(){
         composable(route = Screen.MainScreen.route){
             MainScreen(navController = navController, null)
         }
-        composable(route = Screen.ListReminderScreen.route){
-            ShowCabinetList(navController = navController)
-        }
+//        composable(route = Screen.ListReminderScreen.route){
+//            ShowCabinetList(navController = navController)
+//        }
         composable(route = Screen.AddReminderScreen.route){
             AddConsumable(navController = navController)
         }
