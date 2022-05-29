@@ -1,36 +1,29 @@
 package com.ahrenswett.pillminder.entities
 
+import androidx.room.Embedded
 import androidx.room.Entity
+import androidx.room.Ignore
+import androidx.room.PrimaryKey
 import java.util.*
 
 @Entity
 data class Bottle(
-    val consumable: Consumable,
-    val prescription : Prescription?,
-    var measurement: Measurement?,
-    var reminder: Reminder?,
-    var quantityInBottle: Int? = null,
-    val expirationDate : Date? = null,
+    @PrimaryKey (autoGenerate = true)
+    val consumableID: String,
+    @Embedded var prescription : Prescription?,
+    @Embedded var measurement: Measurement?,
+    @Embedded var reminder: Reminder?,
+    var quantityInBottle: Int?,
+    val expirationDate : Date?,
     var startDate : Date?
 )
 
 
 enum class Measurement {
     MILLIGRAMS,
-    FORM,
     SCOOP,
-    WEIGHT,
+    GRAMS,
+    OZ,
     TSP,
     TBS,
-}
-
-enum class Type {
-    MEDICATION,
-    SUPPLEMENT
-}
-
-enum class Form {
-    TABLET,
-    CAPSULE,
-    POWDER
 }

@@ -7,9 +7,8 @@ import androidx.room.*
 data class Cabinet(
     @PrimaryKey(autoGenerate = true)
     @NonNull
-    @ColumnInfo(name = "cabinet") var name: String,
+    @ColumnInfo(name = "cabinet") var name: String
 ){
-    @TypeConverters
     var bottleList : ArrayList<Bottle> = ArrayList()
 
     fun addBottle(bottle: Bottle){

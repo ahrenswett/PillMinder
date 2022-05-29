@@ -33,15 +33,15 @@ fun ShowCabinetList(navController: NavController, cabinet: Cabinet){
 
 @Composable
 fun ReminderInfo(bottle: Bottle){
-    val consumable = bottle.consumable
+//    val consumable = bottle.consumable
 
-    val type = consumable.type.name.lowercase().replaceFirstChar {
-        if (it.isLowerCase()) it.titlecase(Locale.getDefault())
-        else it.toString() }
-
-    val form = consumable.form.name.lowercase().replaceFirstChar {
-        if (it.isLowerCase()) it.titlecase(Locale.getDefault())
-        else it.toString() }
+//    val type = consumable.type.name.lowercase().replaceFirstChar {
+//        if (it.isLowerCase()) it.titlecase(Locale.getDefault())
+//        else it.toString() }
+//
+//    val form = consumable.form.name.lowercase().replaceFirstChar {
+//        if (it.isLowerCase()) it.titlecase(Locale.getDefault())
+//        else it.toString() }
 
     Card(
         shape = RoundedCornerShape(10.dp),
@@ -53,10 +53,10 @@ fun ReminderInfo(bottle: Bottle){
             Modifier
                 .fillMaxSize()
                 .padding(10.dp), Arrangement.SpaceEvenly) {
-            Text(text = "This Reminder is for a $type")
-            Text(text = "Name: ${consumable.name}")
-            Text(text = "Form: $form")
-            Text(text = "Directions: ${bottle.prescription?.volumeToTake} by mouth every 24 hours")
+//            Text(text = "This Reminder is for a $type")
+//            Text(text = "Name: ${consumable.name}")
+//            Text(text = "Form: $form")
+            Text(text = "Directions: ${bottle.prescription?.timesToTakePerDay} by mouth every 24 hours")
             Text(text = "Reminder start time: $")
         }
     }

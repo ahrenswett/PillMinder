@@ -16,27 +16,6 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-var bottle = Bottle(
-    consumable = Consumable(
-        name = "Depakote",
-        type = Type.MEDICATION,
-        VolumePerUnit = 250F,
-        form = Form.TABLET
-    ),
-    expirationDate = Date(2022,12,28),
-    startDate = Date(2022,5,9),
-    prescription = Prescription(
-        dose = Dose(1000, Measurement.MILLIGRAMS),
-        volumeToTake = 3,
-        prescribingDoc = "Chee M."
-    ),
-    measurement = null,
-    quantityInBottle = 270,
-    reminder = Reminder(ArrayList(),Time(900))
-)
-
-var bottleList : List<Bottle> = listOf(bottle)
-
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
