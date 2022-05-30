@@ -14,5 +14,4 @@ data class Cabinet(
     fun addBottle(bottle: Bottle){
         bottleList.add(bottle)
     }
-
 }

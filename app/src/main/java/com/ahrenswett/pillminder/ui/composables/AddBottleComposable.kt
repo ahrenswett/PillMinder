@@ -13,9 +13,14 @@ import kotlin.collections.ArrayList
 @Composable
 fun AddConsumableBottle(navController: NavController){
 
+
+
+
+
+
     var consumable = Consumable(
-        name = "Depakote",
         supplementOrMedication = Type.MEDICATION,
+        name = "Depakote",
         VolumePerUnit = 250F,
         form = Form.TABLET
     )
