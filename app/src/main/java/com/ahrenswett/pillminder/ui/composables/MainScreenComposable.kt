@@ -16,7 +16,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.ahrenswett.pillminder.Screen
-import com.ahrenswett.pillminder.entities.Bottle
+import com.ahrenswett.pillminder.domain.model.Bottle
 import com.ahrenswett.pillminder.R
 
 @Composable

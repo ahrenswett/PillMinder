@@ -1,45 +1,36 @@
 package com.ahrenswett.pillminder.ui.composables
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.navigation.NavController
-import com.ahrenswett.pillminder.entities.*
-import com.ahrenswett.pillminder.type_converters.*
-import java.sql.Time
-import java.util.*
-import kotlin.collections.ArrayList
+//@Composable
+//fun AddConsumableBottle(navController: NavController){
+//    var myCabinet = Cabinet(
+//        "Ahren's Cabinet"
+//    )
+////    CabinetDAO.addNewCabinet(myCabinet)
+//
+//    var consumable = Consumable(
+//        supplementOrMedication = Type.MEDICATION,
+//        name = "Depakote",
+//        VolumePerUnit = 250F,
+//        form = Form.TABLET
+//    )
+//
+//    var bottle = Bottle(
+//        consumableID = consumable.name + consumable.VolumePerUnit,
+//        expirationDate = Date(2022,12,28),
+//        startDate = Date(2022,5,9),
+//        prescription= Prescription(
+//            dose = Dose(1000, Measurement.MILLIGRAMS),
+//            timesToTakePerDay = 3,
+//            prescribingDoc = "Chee M."),
+//        measurement = Measurement.MILLIGRAMS,
+//        quantityInBottle = 270,
+//        reminder = Reminder(ArrayList(), Time(900)) ,
+//        cabinetID = myCabinet.name
+//    )
 
-@Composable
-fun AddConsumableBottle(navController: NavController){
-
-
-
-
-
-
-    var consumable = Consumable(
-        supplementOrMedication = Type.MEDICATION,
-        name = "Depakote",
-        VolumePerUnit = 250F,
-        form = Form.TABLET
-    )
-
-    var bottle = Bottle(
-        consumableID = consumable.name + consumable.VolumePerUnit,
-        expirationDate = Date(2022,12,28),
-        startDate = Date(2022,5,9),
-        prescription= Prescription(
-            dose = Dose(1000, Measurement.MILLIGRAMS),
-            timesToTakePerDay = 3,
-            prescribingDoc = "Chee M."),
-        measurement = Measurement.MILLIGRAMS,
-        quantityInBottle = 270,
-        reminder = Reminder(ArrayList(), Time(900))
-    )
-    Column() {
-
-    }
+//    Column() {
+//
+//    }
 
 
 
@@ -62,4 +53,4 @@ fun AddConsumableBottle(navController: NavController){
 //    var quantityInBottle: Int? = null,
 //    val expirationDate : Date? = null,
 //    var startDate : Date?
-}
+//}

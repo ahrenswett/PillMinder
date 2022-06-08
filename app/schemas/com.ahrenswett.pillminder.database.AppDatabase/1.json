@@ -1,0 +1,34 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "9e0fd8ce86a875f909cc6a267f46fa8e",
+    "entities": [
+      {
+        "tableName": "cabinets",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`cabinet` TEXT NOT NULL, PRIMARY KEY(`cabinet`))",
+        "fields": [
+          {
+            "fieldPath": "name",
+            "columnName": "cabinet",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "cabinet"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9e0fd8ce86a875f909cc6a267f46fa8e')"
+    ]
+  }
+}
