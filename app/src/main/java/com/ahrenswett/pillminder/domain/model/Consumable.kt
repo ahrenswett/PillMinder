@@ -11,11 +11,7 @@ data class Consumable (
 //    @ColumnInfo val supplementOrMedication: Type
     )
 
-//enum class Type {
-//    MEDICATION,
-//    SUPPLEMENT
-//}
-//
+
 //enum class Form {
 //    TABLET,
 //    CAPSULE,

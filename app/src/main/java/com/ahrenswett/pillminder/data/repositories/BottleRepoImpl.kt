@@ -12,12 +12,12 @@ class BottleRepoImpl(private val dao: BottleDAO) : BottleRepo {
         return dao.getBottlesInCabinet(cabinetName)
     }
 
-//    override suspend fun getBottleById(bottleId: Int): Bottle? {
-//        return dao.
-//    }
+    override fun getBottles(): Flow<List<Bottle>>{
+        return dao.getBottles()
+    }
 
-    override suspend fun insertBottle(bottle: Bottle) {
-
+    override suspend fun addBottleToCabinet(cabinetName : String) {
+        dao.addBottleToCabinet(cabinetName)
     }
 
     override suspend fun deleteBottle(bottle: Bottle) {

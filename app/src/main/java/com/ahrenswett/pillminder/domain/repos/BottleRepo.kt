@@ -7,9 +7,11 @@ import kotlinx.coroutines.flow.Flow
 interface BottleRepo {
     fun getBottlesInCabinet(cabinetName: String): Flow<List<Bottle>>
 
+    fun getBottles(): Flow<List<Bottle>>
+
 //    suspend fun getBottleById(bottleId: Int): Bottle?
 
-    suspend fun insertBottle(bottle: Bottle)
+    suspend fun addBottleToCabinet(cabinetName : String)
 
     suspend fun deleteBottle(bottle: Bottle)
 }

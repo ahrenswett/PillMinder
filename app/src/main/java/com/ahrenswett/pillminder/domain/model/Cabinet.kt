@@ -6,5 +6,6 @@ import androidx.room.*
 @Entity(tableName = "cabinets")
 data class Cabinet(
     @NonNull
-    @PrimaryKey @ColumnInfo(name = "cabinet") var name: String
+    @PrimaryKey @ColumnInfo(name = "cabinet") var name: String,
+    var bottleList: List<Bottle>
 )

@@ -6,6 +6,7 @@ import com.ahrenswett.pillminder.domain.repos.CabinetRepo
 import kotlinx.coroutines.flow.Flow
 
 class CabinetRepoImpl (private val dao: CabinetDAO):CabinetRepo {
+
     override fun getCabinets(): Flow<List<Cabinet>> {
         return dao.getCabinets()
     }

@@ -9,8 +9,8 @@ interface BottleDAO {
     @Query("SELECT * FROM bottles WHERE cabinetID = :cabinet")
     fun getBottlesInCabinet(cabinet : String): Flow<List<Bottle>>
 
-//    @Query("SELECT * FROM bottles WHERE bottleID = :")
-//    fun getBottleByID
+    @Query("SELECT * FROM bottles")
+    fun getBottles() : Flow<List<Bottle>>
 
     @Insert(onConflict = OnConflictStrategy.ABORT)
     suspend fun addBottleToCabinet(cabinet : String)

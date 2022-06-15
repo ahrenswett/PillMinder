@@ -1,0 +1,117 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "a07c756cc5c331ec0f003537cef75445",
+    "entities": [
+      {
+        "tableName": "cabinets",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`cabinet` TEXT NOT NULL, `bottleList` TEXT NOT NULL, PRIMARY KEY(`cabinet`))",
+        "fields": [
+          {
+            "fieldPath": "name",
+            "columnName": "cabinet",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "bottleList",
+            "columnName": "bottleList",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "cabinet"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "bottles",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`bottleID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `consumableID` TEXT NOT NULL, `quantityInBottle` INTEGER, `expirationDate` TEXT, `startDate` TEXT, `cabinetID` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "bottleID",
+            "columnName": "bottleID",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "consumableID",
+            "columnName": "consumableID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "quantityInBottle",
+            "columnName": "quantityInBottle",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "expirationDate",
+            "columnName": "expirationDate",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "startDate",
+            "columnName": "startDate",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "cabinetID",
+            "columnName": "cabinetID",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "bottleID"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "consumables",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`name` TEXT NOT NULL, `volumePerUnit` REAL NOT NULL, PRIMARY KEY(`name`, `volumePerUnit`))",
+        "fields": [
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "volumePerUnit",
+            "columnName": "volumePerUnit",
+            "affinity": "REAL",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "name",
+            "volumePerUnit"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a07c756cc5c331ec0f003537cef75445')"
+    ]
+  }
+}

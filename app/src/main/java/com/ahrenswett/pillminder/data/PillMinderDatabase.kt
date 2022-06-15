@@ -24,7 +24,7 @@ import com.ahrenswett.pillminder.domain.model.Consumable
 ////    FormTypeConverter::class,
 ////    ReminderTypeConverter::class,
 //)
-abstract class AppDatabase : RoomDatabase() {
+abstract class PillMinderDatabase : RoomDatabase() {
     abstract val cabinetDAO: CabinetDAO
     abstract val bottleDAO: BottleDAO
     abstract val consumableDAO: ConsumableDAO

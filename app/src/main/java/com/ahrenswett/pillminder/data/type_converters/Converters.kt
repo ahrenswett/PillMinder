@@ -1,4 +1,4 @@
-package com.ahrenswett.pillminder.type_converters
+package com.ahrenswett.pillminder.data.type_converters
 
 import androidx.room.TypeConverter
 //import com.ahrenswett.pillminder.entities.Form

@@ -15,7 +15,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.ahrenswett.pillminder.Screen
+import com.ahrenswett.pillminder.util.Route
 import com.ahrenswett.pillminder.domain.model.Bottle
 import com.ahrenswett.pillminder.R
 
@@ -31,7 +31,7 @@ fun MainScreen(navController: NavController, bottleList: List<Bottle>?) {
                     .padding(2.dp)
                     .weight(1f, true)
                     .clickable {
-                        navController.navigate(Screen.ListReminderScreen.route)
+                        navController.navigate(Route.ListReminderRoute.route)
                     }
             ){
                 Column(
@@ -54,7 +54,7 @@ fun MainScreen(navController: NavController, bottleList: List<Bottle>?) {
                 .padding(2.dp)
                 .weight(1f, true)
                 .clickable {
-                    navController.navigate(Screen.AddReminderScreen.route)
+                    navController.navigate(Route.AddReminderRoute.route)
                 }
         ){
             Column(
