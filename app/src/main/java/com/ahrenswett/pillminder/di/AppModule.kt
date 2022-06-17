@@ -40,7 +40,7 @@ object AppModule {
     @Provides
     @Singleton
     fun provideBottleRepo(db: PillMinderDatabase) : BottleRepo{
-        return( BottleRepoImpl(db.bottleDAO))
+        return( BottleRepoImpl(db.bottleDAO, db.cabinetDAO))
     }
 
     @Provides

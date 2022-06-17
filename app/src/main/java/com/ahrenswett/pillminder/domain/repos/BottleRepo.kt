@@ -9,9 +9,9 @@ interface BottleRepo {
 
     fun getBottles(): Flow<List<Bottle>>
 
-//    suspend fun getBottleById(bottleId: Int): Bottle?
+    suspend fun getBottleById(bottleId: Int): Bottle?
 
-    suspend fun addBottleToCabinet(cabinetName : String)
+    suspend fun addBottleToCabinet(bottle: Bottle, cabinet: Cabinet)
 
     suspend fun deleteBottle(bottle: Bottle)
 }

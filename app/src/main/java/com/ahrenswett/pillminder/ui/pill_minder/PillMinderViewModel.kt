@@ -21,7 +21,6 @@ class PillMinderViewModel @Inject constructor(
 ): ViewModel() {
 
     //TODO: needs to be more restrictive for netork and user specific values. should only get users cabinets.
-    val cabinets = cabinetRepo.getCabinets()
 
     private val _uiEvents = Channel<UiEvent>()
     val uiEvent = _uiEvents.receiveAsFlow()
@@ -34,6 +33,10 @@ class PillMinderViewModel @Inject constructor(
              is PillMinderEvents.ViewCabinet -> {
                  sendUiEvent(UiEvent.Navigate(Route.ViewCabinet.route + "?cabinet=${event.cabinet.name}"))
              }
+//            logout?
+//            login?
+//             Profile?
+//
          }
     }
 

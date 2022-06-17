@@ -7,14 +7,14 @@ import java.util.*
 @Entity(tableName = "bottles")
 data class Bottle(
     @PrimaryKey (autoGenerate = true)
-    @ColumnInfo val bottleID :Int,
+    @ColumnInfo val bottleID : Int?,
     @ColumnInfo val consumableID: String,
 //    @Embedded var prescription : Prescription?,
 //    @Embedded var measurement: Measurement?,
 //    @Embedded var reminder: Reminder?,
     @ColumnInfo var quantityInBottle: Int?,
-    @ColumnInfo val expirationDate : Date?,
-    @ColumnInfo var startDate : Date?,
+//    @ColumnInfo val expirationDate : Date?,
+//    @ColumnInfo var startDate : Date?,
     @ColumnInfo val cabinetID: String
 )
 
