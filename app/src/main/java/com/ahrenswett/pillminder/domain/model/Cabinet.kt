@@ -5,6 +5,7 @@ import androidx.room.*
 import kotlinx.serialization.Serializable
 
 @Entity(tableName = "cabinets")
+@Serializable
 data class Cabinet(
     @NonNull
     @PrimaryKey @ColumnInfo(name = "cabinet") var name: String,

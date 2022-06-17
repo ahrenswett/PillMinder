@@ -1,6 +1,7 @@
 package com.ahrenswett.pillminder.domain.model
 
 //@Entity(tableName = "users")
+//@Serializable
 //data class User(
 //    @PrimaryKey(autoGenerate = true)
 //    @ColumnInfo (name = "id") val id : Int,

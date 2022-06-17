@@ -1,10 +1,12 @@
 package com.ahrenswett.pillminder.domain.model
 
 import androidx.room.*
+import kotlinx.serialization.Serializable
 //import com.ahrenswett.pillminder.type_converters.MeasurementTypeConverters
 import java.util.*
 
 @Entity(tableName = "bottles")
+@Serializable
 data class Bottle(
     @PrimaryKey (autoGenerate = true)
     @ColumnInfo val bottleID : Int?,
