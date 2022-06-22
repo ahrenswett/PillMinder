@@ -9,27 +9,26 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.ahrenswett.pillminder.ui.cabinet_list.CabinetListViewModel
+import com.ahrenswett.pillminder.ui.composables.CabinetListScreen
 import com.ahrenswett.pillminder.ui.theme.PillMinderTheme
+import com.ahrenswett.pillminder.util.Route
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             PillMinderTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    Navigation()
-                }
+                Navigation()
             }
         }
     }
 }
-
-
 
 @Preview(showBackground = true)
 @Composable

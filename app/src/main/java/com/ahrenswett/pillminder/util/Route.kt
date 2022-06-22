@@ -2,9 +2,10 @@ package com.ahrenswett.pillminder.util
 
 
 sealed class Route(val route:String){
-    object MainRoute : Route("main_screen")
-    object ViewCabinet : Route("view_cabinet")
-    object ListReminderRoute : Route("list_screen")
-    object AddReminderRoute : Route("add_screen")
-    object AddBottleToCabinet : Route("add_bottle")
+    object CABINET_LIST : Route("cabinet_list")
+    object CABINET_VIEW : Route("cabinet_view")
+    object ADD_EDIT_CABINET : Route("add_edit_cabinet")
+    object LIST_REMINDERS : Route("list_reminders")
+    object ADD_REMINDER : Route("add_reminder")
+
 }

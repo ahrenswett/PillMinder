@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "a505cf41e5b0cb61b497c134b679b6b4",
+    "identityHash": "1d570a415ec7378338206d7f0d0d3794",
     "entities": [
       {
         "tableName": "cabinets",
@@ -26,7 +26,7 @@
       },
       {
         "tableName": "bottles",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`bottleID` INTEGER PRIMARY KEY AUTOINCREMENT, `consumableID` TEXT NOT NULL, `quantityInBottle` INTEGER, `cabinetID` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`bottleID` INTEGER PRIMARY KEY AUTOINCREMENT, `consumableID` TEXT NOT NULL, `quantityInBottle` INTEGER, `expirationDate` TEXT, `startDate` TEXT, `cabinetID` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "bottleID",
@@ -44,6 +44,18 @@
             "fieldPath": "quantityInBottle",
             "columnName": "quantityInBottle",
             "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "expirationDate",
+            "columnName": "expirationDate",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "startDate",
+            "columnName": "startDate",
+            "affinity": "TEXT",
             "notNull": false
           },
           {
@@ -93,7 +105,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a505cf41e5b0cb61b497c134b679b6b4')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '1d570a415ec7378338206d7f0d0d3794')"
     ]
   }
 }
