@@ -1,5 +1,7 @@
 package com.ahrenswett.pillminder.ui.add_edit_cabinet
 
+import android.util.Log
+import android.util.Log.INFO
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -33,7 +35,8 @@ class AddEditCabinetViewModel @Inject constructor(
 
     init{
 //        in case of edit to cabinet name
-        val cabinetId = savedStateHandle.get<String>("cabinet")
+        Log.i("AddEditCabinetViewModel","${cabinet?.let { savedStateHandle.get<String>(it.name) }}")
+        val cabinetId = cabinet?.let { savedStateHandle.get<String>(it.name) }
         if(cabinet != null){
             viewModelScope.launch {
                 cabinet = cabinetId?.let { repo.getCabinetById(it)}
@@ -59,6 +62,7 @@ class AddEditCabinetViewModel @Inject constructor(
                     }
                     repo.insertCabinet(cabinet = Cabinet(name))
                 }
+                sendUiEvent(UiEvent.PopBackStack)
             }
         }
     }

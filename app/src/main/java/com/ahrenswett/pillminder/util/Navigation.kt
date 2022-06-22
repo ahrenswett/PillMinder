@@ -40,7 +40,7 @@ fun Navigation(){
                 }
             )
         ){
-            AddEditCabinetScreen(onPopBackStack = { UiEvent.PopBackStack })
+            AddEditCabinetScreen(onPopBackStack = { navController.popBackStack()})
         }
     }
 }
