@@ -9,58 +9,31 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.ahrenswett.pillminder.entities.*
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.ahrenswett.pillminder.ui.cabinet_list.CabinetListViewModel
+import com.ahrenswett.pillminder.ui.composables.CabinetListScreen
 import com.ahrenswett.pillminder.ui.theme.PillMinderTheme
-import java.sql.Time
-import java.util.*
-import kotlin.collections.ArrayList
+import com.ahrenswett.pillminder.util.Route
+import dagger.hilt.android.AndroidEntryPoint
 
-
-var bottle = Bottle(
-    consumable = Consumable(
-        name = "Depakote",
-        type = Type.MEDICATION,
-        VolumePerUnit = 250F,
-        form = Form.TABLET
-    ),
-    expirationDate = Date(2022,12,28),
-    startDate = Date(2022,5,9),
-    prescription = Prescription(
-        dose = Dose(1000, Measurement.MILLIGRAMS),
-        volumeToTake = 3,
-        prescribingDoc = "Chee M."
-    ),
-    measurement = null,
-    quantityInBottle = 270,
-    reminder = Reminder(ArrayList(),Time(900))
-)
-
-var bottleList : List<Bottle> = listOf(bottle)
-
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-            setContent {
+        setContent {
             PillMinderTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    Navagation()
-                }
+                Navigation()
             }
         }
     }
 }
 
-
-
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     PillMinderTheme {
-        Navagation()
+        Navigation()
     }
 }
