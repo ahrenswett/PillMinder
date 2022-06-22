@@ -46,7 +46,9 @@ fun CabinetListScreen(
     Scaffold(
         scaffoldState = scaffoldState,
         floatingActionButton = {
-            FloatingActionButton(onClick = { CabinetListEvent.AddNewCabinet }) {
+            FloatingActionButton(onClick = {
+                viewModel.onEvent(CabinetListEvent.AddNewCabinet)
+            }) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = "Add")
             }
         }

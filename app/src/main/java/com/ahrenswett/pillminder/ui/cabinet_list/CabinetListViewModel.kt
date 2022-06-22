@@ -28,9 +28,9 @@ class CabinetListViewModel @Inject constructor(
 
     fun onEvent(event: CabinetListEvent){
          when(event){
-//             is CabinetListEvent.AddBottleToCabinet -> {
-//                 sendUiEvent(UiEvent.Navigate(Route.AddBottleToCabinet.route+ "?cabinet=${event.cabinet.name}"))
-//             }
+             is CabinetListEvent.AddNewCabinet -> {
+                 sendUiEvent(UiEvent.Navigate(Route.ADD_EDIT_CABINET.route + "?cabinet={}"))
+             }
              is CabinetListEvent.ViewCabinet -> {
                  sendUiEvent(
                      UiEvent.Navigate(Route.CABINET_VIEW.route + "?cabinet=${event.cabinet.name}")

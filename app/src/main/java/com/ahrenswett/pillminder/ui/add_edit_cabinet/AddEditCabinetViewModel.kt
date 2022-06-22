@@ -33,10 +33,10 @@ class AddEditCabinetViewModel @Inject constructor(
 
     init{
 //        in case of edit to cabinet name
-        val cabinetId = savedStateHandle.get<String>("cabinet")!!
-        if(cabinet?.name != ""){
+        val cabinetId = savedStateHandle.get<String>("cabinet")
+        if(cabinet != null){
             viewModelScope.launch {
-                cabinet = repo.getCabinetById(cabinetId)
+                cabinet = cabinetId?.let { repo.getCabinetById(it)}
                 name = cabinet!!.name
                 this@AddEditCabinetViewModel.cabinet = cabinet
             }
@@ -56,10 +56,8 @@ class AddEditCabinetViewModel @Inject constructor(
                         sendUiEvent(UiEvent.ShowSnackBar(
                             message = "The Cabinet must have a name"
                         ))
-                        return@launch
                     }
                     repo.insertCabinet(cabinet = Cabinet(name))
-                    sendUiEvent(UiEvent.PopBackStack)
                 }
             }
         }
