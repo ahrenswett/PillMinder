@@ -1,6 +1,7 @@
 package com.ahrenswett.pillminder.ui.add_edit_cabinet
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
@@ -8,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.textInputServiceFactory
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.ahrenswett.pillminder.domain.model.Cabinet
@@ -51,13 +53,18 @@ fun AddEditCabinetScreen(
         ) {
             TextField(
                 value = viewModel.name,
+                singleLine = true,
                 onValueChange = {
                     viewModel.onEvent(AddEditCabinetEvent.onNameChange(it))
                 },
                 placeholder = {
-                    Text(text = "Cabinet Name")
+                    val text =   if(viewModel.cabinet != null){
+                       viewModel.cabinet?.name
+                    }else "Enter a cabinet name"
+                    if (text != null) Text(text = text)
                 },
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
+
             )
         }
     }
