@@ -35,7 +35,7 @@ fun Navigation(){
         }
 
         // Navigation to AddEditCabinet
-        composable(route = Route.ADD_EDIT_CABINET.route + "?cabinetId={cabinetID}",
+        composable(route = Route.ADD_EDIT_CABINET.route + "?cabinetID={cabinetID}",
             arguments = listOf(
                 navArgument( name = "cabinetID"){
                     type = NavType.StringType
@@ -47,7 +47,7 @@ fun Navigation(){
         }
 
         // Navigation to CabinetView
-        composable(route = Route.CABINET_VIEW.route + "?cabinetId={cabinetID}",
+        composable(route = Route.CABINET_VIEW.route + "?cabinetID={cabinetID}",
             arguments = listOf(
                 navArgument(name = "cabinetID"){
                     type = NavType.StringType
@@ -57,5 +57,19 @@ fun Navigation(){
         ){
             CabinetViewScreen(onPopBackStack = {navController.popBackStack()})
         }
+
+        // Navigate to AddEditBottle
+        composable(route = Route.ADD_EDIT_BOTTLE.route + "?bottleID={bottleID",
+            arguments = listOf(
+                navArgument( name = "bottleID"){
+                    type = NavType.StringType
+                }
+            )
+        ){
+            AddEditBottleScreen(onPopBackStack = { /*TODO*/ })
+        }
+
+
+        // Navigate to BottleView
     }
 }

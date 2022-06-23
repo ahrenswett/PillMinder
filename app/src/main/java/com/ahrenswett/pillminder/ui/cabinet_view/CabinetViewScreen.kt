@@ -1,5 +1,6 @@
 package com.ahrenswett.pillminder.ui.cabinet_view
 
+import android.media.Image
 import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -75,8 +76,18 @@ fun CabinetViewScreen(
             }
         }
     ){
-        Column{
-            Text(text = "IM A ${cabinet?.name}")
+        val tabs = {
+
         }
+        Column() {
+            TabRow(
+                selectedTabIndex = 1,
+
+            ) {
+
+            }
+
+        }
+
     }
 }

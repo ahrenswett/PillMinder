@@ -55,10 +55,12 @@ class AddEditCabinetViewModel @Inject constructor(
             is AddEditCabinetEvent.onSubmit -> {
                 //put cabinet in the database
                 viewModelScope.launch {
+                    Log.i( "NAME ON SUBMIT", "Name is blank is ${name.isBlank()}, name is $name")
                     if(name.isBlank()){
                         sendUiEvent(UiEvent.ShowSnackBar(
                             message = "The Cabinet must have a name"
                         ))
+                        return@launch
                     }
                     repo.insertCabinet(cabinet = Cabinet(name))
                 }

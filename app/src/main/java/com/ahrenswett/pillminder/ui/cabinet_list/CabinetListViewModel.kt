@@ -35,7 +35,7 @@ class CabinetListViewModel @Inject constructor(
              }
              is CabinetListEvent.ViewCabinet -> {
                  sendUiEvent(
-                     UiEvent.Navigate(Route.CABINET_VIEW.route + "?cabinetId=${event.cabinet.name}")
+                     UiEvent.Navigate(Route.CABINET_VIEW.route + "?cabinetID=${event.cabinet.name}")
                  )
              }
              else -> Unit
