@@ -62,7 +62,9 @@ fun CabinetListScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .clickable {
-                            viewModel.onEvent(CabinetListEvent.ViewCabinet(cabinet))
+                            viewModel.onEvent(
+                                CabinetListEvent.ViewCabinet(cabinet)
+                            )
                         }
                 )
             }

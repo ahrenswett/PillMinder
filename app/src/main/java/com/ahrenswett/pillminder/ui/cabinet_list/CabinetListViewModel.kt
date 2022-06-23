@@ -1,5 +1,7 @@
 package com.ahrenswett.pillminder.ui.cabinet_list
 
+import android.util.Log
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ahrenswett.pillminder.domain.repos.BottleRepo
@@ -29,22 +31,21 @@ class CabinetListViewModel @Inject constructor(
     fun onEvent(event: CabinetListEvent){
          when(event){
              is CabinetListEvent.AddNewCabinet -> {
-                 sendUiEvent(UiEvent.Navigate(Route.ADD_EDIT_CABINET.route + "?cabinet={}"))
+                 sendUiEvent(UiEvent.Navigate(Route.ADD_EDIT_CABINET.route))
              }
              is CabinetListEvent.ViewCabinet -> {
                  sendUiEvent(
-                     UiEvent.Navigate(Route.CABINET_VIEW.route + "?cabinet=${event.cabinet.name}")
+                     UiEvent.Navigate(Route.CABINET_VIEW.route + "?cabinetId=${event.cabinet.name}")
+                         .also { Log.i("CabinetListVM", event.cabinet.name) }
                  )
              }
              else -> Unit
-//            logout?
-//            login?
-//            Profile?
-//
          }
     }
 
     private fun sendUiEvent(event: UiEvent){
-        viewModelScope.launch { _uiEvents.send(event) }
+        viewModelScope.launch {
+            _uiEvents.send(event)
+        }
     }
 }

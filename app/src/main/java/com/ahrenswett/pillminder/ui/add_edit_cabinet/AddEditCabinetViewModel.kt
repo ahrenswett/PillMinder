@@ -34,13 +34,13 @@ class AddEditCabinetViewModel @Inject constructor(
     val uiEvent = _uiEvents.receiveAsFlow()
 
     init{
+        /*TODO Fix case of editing name of cabinet*/
 //        in case of edit to cabinet name
-        Log.i("AddEditCabinetViewModel","${cabinet?.let { savedStateHandle.get<String>(it.name) }}")
-        val cabinetId = cabinet?.let { savedStateHandle.get<String>(it.name) }
-        if(cabinet != null){
+        Log.i("AddEditCabinetViewModel", "${savedStateHandle.keys()}, ${savedStateHandle.get<String?>("cabinetID")}")
+        val cabinetID = savedStateHandle.get<String>("cabinetID")
+        if(cabinetID != ""){
             viewModelScope.launch {
-                cabinet = cabinetId?.let { repo.getCabinetById(it)}
-                name = cabinet!!.name
+                cabinet = repo.getCabinetById(cabinetID!!)
                 this@AddEditCabinetViewModel.cabinet = cabinet
             }
         }
