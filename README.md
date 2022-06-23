@@ -1,10 +1,13 @@
 # PillMinder
-Simple pill reminder app that is persistant at reminding the user(s) to take or Administer medication.
+A reminder app for medications and supplements that is persistent at reminding the user(s) to take or Administer medication until dismissed.
 
 
-| MainScreen | List screen |
+App Screens as of 06/23/2022
+| Cabinet List (Main) Screen | Cabinet View screen | 
 | --- | --- |
 | <img src="https://github.com/ahrenswett/PillMinder/blob/main/readme_res/main.png?raw=true" width="200" /> | <img src="https://github.com/ahrenswett/PillMinder/blob/main/readme_res/list.png?raw=true" width="200" /> |
+
+
 
 ## MVP for this project
 - Add and delete delete cabinets to and from the database.
