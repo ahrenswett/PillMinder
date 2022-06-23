@@ -4,10 +4,9 @@ import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
-import androidx.compose.material.rememberScaffoldState
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -17,6 +16,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.ahrenswett.pillminder.domain.model.Bottle
+import com.ahrenswett.pillminder.ui.cabinet_list.CabinetListEvent
 import com.ahrenswett.pillminder.util.UiEvent
 import kotlinx.coroutines.flow.collect
 
@@ -66,6 +66,13 @@ fun CabinetViewScreen(
                     }
                 }
             )
+        },
+        floatingActionButton = {
+            FloatingActionButton(onClick = {
+                viewModel.onEvent(CabinetViewEvent.AddBottle)
+            }) {
+                Icon(imageVector = Icons.Default.Add, contentDescription = "Add")
+            }
         }
     ){
         Column{
