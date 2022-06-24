@@ -8,8 +8,12 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.focus.focusTarget
 import androidx.compose.ui.platform.textInputServiceFactory
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -22,8 +26,13 @@ fun AddEditCabinetScreen(
     onPopBackStack: () -> Unit,
     viewModel: AddEditCabinetViewModel = hiltViewModel()
 ){
+    //Creates auto focus on Cabinet Name text field
+    val focusRequester = remember { FocusRequester() }
+
     val scaffoldState = rememberScaffoldState()
+
     LaunchedEffect(key1 = true){
+        focusRequester.requestFocus()
         viewModel.uiEvent.collect { event ->
             when(event){
                 is UiEvent.PopBackStack -> onPopBackStack()
@@ -37,13 +46,13 @@ fun AddEditCabinetScreen(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp),
-        floatingActionButton ={
-            FloatingActionButton(onClick = {
-                viewModel.onEvent(AddEditCabinetEvent.onSubmit)
-            }) {
-                Icon(imageVector = Icons.Default.Check, contentDescription = "Submit")
-            }
-        }
+//        floatingActionButton ={
+//            FloatingActionButton(onClick = {
+//                viewModel.onEvent(AddEditCabinetEvent.onSubmit)
+//            }) {
+//                Icon(imageVector = Icons.Default.Check, contentDescription = "Submit")
+//            }
+//        }
     ){
         Column(
             modifier = Modifier
@@ -52,12 +61,14 @@ fun AddEditCabinetScreen(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            TextField(
+            OutlinedTextField(
                 value = viewModel.name,
                 onValueChange = {
                     viewModel.onEvent(AddEditCabinetEvent.onNameChange(it))
                 },
+                // Responsible for submitting the cabinet name from the keyboard
                 keyboardActions = KeyboardActions(  onDone = {viewModel.onEvent(AddEditCabinetEvent.onSubmit).also { Log.i( "Executed", "Keyboard Action") }}),
+                // Ensures that there is no return feature on the Keyboard replaces with a checkmark.
                 singleLine = true,
                 placeholder = {
                     val text =   if(viewModel.cabinet != null){
@@ -65,7 +76,7 @@ fun AddEditCabinetScreen(
                     }else "Cabinet Name"
                     if (text != null) Text(text = text)
                 },
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth().focusRequester(focusRequester),
             )
         }
     }
