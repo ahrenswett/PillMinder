@@ -10,13 +10,11 @@ import com.ahrenswett.pillminder.domain.model.Bottle
 import com.ahrenswett.pillminder.domain.model.Consumable
 import com.ahrenswett.pillminder.domain.repos.BottleRepo
 import com.ahrenswett.pillminder.domain.repos.ConsumableRepo
-import com.ahrenswett.pillminder.domain.util.Type
 import com.ahrenswett.pillminder.util.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
-import kotlinx.serialization.Contextual
 import javax.inject.Inject
 
 @HiltViewModel
@@ -80,6 +78,7 @@ class AddEditBottleViewModel @Inject constructor(
                         cabinetID = cabinetID!!
                     )
                     TODO("Create a new Consumable or get the ID of an existing Consumable. Implement a trie to search for a Consumable by name")
+
                 }
             }
         }

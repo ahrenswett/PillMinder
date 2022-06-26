@@ -1,7 +1,5 @@
 package com.ahrenswett.pillminder.ui.add_edit_bottle
 
-import com.ahrenswett.pillminder.domain.util.Type
-
 
 sealed class AddEditBottleEvent{
     data class OnNameChange(val consumableID : String) : AddEditBottleEvent()

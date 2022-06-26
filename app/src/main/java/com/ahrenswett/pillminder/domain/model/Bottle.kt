@@ -1,7 +1,6 @@
 package com.ahrenswett.pillminder.domain.model
 
 import androidx.room.*
-import com.ahrenswett.pillminder.domain.util.Type
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 

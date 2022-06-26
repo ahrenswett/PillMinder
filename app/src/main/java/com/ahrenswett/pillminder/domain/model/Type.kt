@@ -1,4 +1,4 @@
-package com.ahrenswett.pillminder.domain.util
+package com.ahrenswett.pillminder.domain.model
 
 import com.ahrenswett.pillminder.domain.model.Consumable
 import com.ahrenswett.pillminder.domain.model.Prescription

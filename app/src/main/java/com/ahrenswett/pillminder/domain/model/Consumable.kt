@@ -2,7 +2,6 @@ package com.ahrenswett.pillminder.domain.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
-import com.ahrenswett.pillminder.domain.util.Type
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 import org.jetbrains.annotations.NotNull
