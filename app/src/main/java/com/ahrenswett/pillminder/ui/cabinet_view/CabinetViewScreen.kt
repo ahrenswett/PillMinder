@@ -44,14 +44,14 @@ fun CabinetViewScreen(
     cabinet?.name?.let { Log.i( "CabinetViewScreen", it) }
 
 
-//    LaunchedEffect(key1 = true){
-//        viewModel.uiEvent.collect { event ->
-//            when(event){
-//                is UiEvent.PopBackStack -> onPopBackStack()
-//                else -> Unit
-//            }
-//        }
-//    }
+    LaunchedEffect(key1 = true){
+        viewModel.uiEvent.collect { event ->
+            when(event){
+                is UiEvent.PopBackStack -> onPopBackStack()
+                else -> Unit
+            }
+        }
+    }
 
     Scaffold (
         scaffoldState = scaffoldState,
@@ -76,17 +76,29 @@ fun CabinetViewScreen(
             }
         }
     ){
-        val tabs = {
-
-        }
+//        val tabs = {
+//
+//        }
         Column() {
-            TabRow(
-                selectedTabIndex = 1,
-
-            ) {
-
-            }
-
+//            TabRow(
+//                selectedTabIndex = 1,
+//                tabs = {
+//                    Tab(selected = true, text = "Medication") {
+//                        LazyColumn(modifier = Modifier.fillMaxWidth()) {
+//                            viewModel.bottles.collectAsState().value.forEach { bottle ->
+//                                BottleCard(bottle = bottle)
+//                            }
+//                        }
+//                    }
+//                    Tab(text = "Supplements") {
+//                        LazyColumn(modifier = Modifier.fillMaxWidth()) {
+//                            viewModel.reminders.collectAsState().value.forEach { reminder ->
+//                                ReminderCard(reminder = reminder)
+//                            }
+//                        }
+//                    }
+//                }
+//            )
         }
 
     }

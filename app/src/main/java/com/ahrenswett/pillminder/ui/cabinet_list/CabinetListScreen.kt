@@ -1,5 +1,6 @@
 package com.ahrenswett.pillminder.ui.composables
 
+import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -56,15 +57,14 @@ fun CabinetListScreen(
     ) {
         LazyColumn(modifier = Modifier.fillMaxSize()) {
             items(cabinets.value) { cabinet ->
-                CabinetListItem(
+                Log.i("CabinetListScreen", "Cabinet: $cabinet, ${cabinets.value.indexOf(cabinet)}")
+            CabinetListItem(
                     cabinet = cabinet,
                     onEvent = viewModel::onEvent,
                     modifier = Modifier
                         .fillMaxWidth()
                         .clickable {
-                            viewModel.onEvent(
-                                CabinetListEvent.ViewCabinet(cabinet)
-                            )
+                            viewModel.onEvent(CabinetListEvent.ViewCabinet(cabinet))
                         }
                 )
             }

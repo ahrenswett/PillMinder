@@ -1,5 +1,6 @@
 package com.ahrenswett.pillminder
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavArgument
 import androidx.navigation.NavType
@@ -56,6 +57,7 @@ fun Navigation(){
                 }
             )
         ){
+            Log.i("Navigation", "CabinetView")
             CabinetViewScreen(onPopBackStack = {navController.popBackStack()})
         }
 
