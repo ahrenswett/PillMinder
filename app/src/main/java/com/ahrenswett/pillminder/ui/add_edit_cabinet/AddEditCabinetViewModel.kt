@@ -37,7 +37,6 @@ class AddEditCabinetViewModel @Inject constructor(
     init{
         /*TODO Fix case of editing name of cabinet*/
 //        in case of edit to cabinet name
-        Log.i("AddEditCabinetViewModel", "${savedStateHandle.keys()}, ${savedStateHandle.get<String?>("cabinetID")}")
         val cabinetID = savedStateHandle.get<String>("cabinetID")
         if(cabinetID != ""){
             viewModelScope.launch {
@@ -56,7 +55,6 @@ class AddEditCabinetViewModel @Inject constructor(
             is AddEditCabinetEvent.onSubmit -> {
                 //put cabinet in the database
                 viewModelScope.launch {
-                    Log.i( "NAME ON SUBMIT", "Name is blank is ${name.isBlank()}, name is $name")
                     if(name.isBlank()){
                         sendUiEvent(UiEvent.ShowSnackBar("Blank Cabinet Name"))
                         return@launch

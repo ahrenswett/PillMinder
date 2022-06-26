@@ -34,6 +34,10 @@ class AddEditBottleViewModel @Inject constructor(
     var consumable by mutableStateOf<Consumable?>(null)
         private set
 
+    //  Consumablelist to pre populate spinner when editing an existing bottle
+    var consumables by mutableStateOf(consumableRepo.listConsumables())
+        private set
+
 //  Variables to pass back and forth between the view and view model
     var name by mutableStateOf("")
         private set
@@ -75,7 +79,7 @@ class AddEditBottleViewModel @Inject constructor(
                         startDate = startDate,
                         cabinetID = cabinetID!!
                     )
-                    TODO("Create a new Consumable or get the ID of an existing Consumable")
+                    TODO("Create a new Consumable or get the ID of an existing Consumable. Implement a trie to search for a Consumable by name")
                 }
             }
         }
