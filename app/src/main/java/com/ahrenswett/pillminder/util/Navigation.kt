@@ -64,6 +64,7 @@ fun Navigation(){
             arguments = listOf(
                 navArgument( name = "bottleID"){
                     type = NavType.StringType
+                    defaultValue = ""
                 }
             )
         ){

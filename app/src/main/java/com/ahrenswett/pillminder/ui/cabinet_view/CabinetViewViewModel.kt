@@ -12,6 +12,7 @@ import com.ahrenswett.pillminder.domain.model.Cabinet
 import com.ahrenswett.pillminder.domain.repos.BottleRepo
 import com.ahrenswett.pillminder.domain.repos.CabinetRepo
 import com.ahrenswett.pillminder.domain.repos.ConsumableRepo
+import com.ahrenswett.pillminder.util.Route
 import com.ahrenswett.pillminder.util.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -29,8 +30,6 @@ class CabinetViewViewModel @Inject constructor(
     var cabinet by mutableStateOf<Cabinet?>(null)
         private set
 
-    var name by mutableStateOf("")
-        private set
 
     //Event sending to UI
     private val _uiEvents = Channel<UiEvent>()
@@ -44,6 +43,7 @@ class CabinetViewViewModel @Inject constructor(
             "${savedStateHandle.keys()}, ${savedStateHandle.get<String?>("cabinetID")}"
         )
         val cabinetID = savedStateHandle.get<String>("cabinetID")
+
         if (cabinetID != "") {
             viewModelScope.launch {
                 cabinet = cabinetRepo.getCabinetById(cabinetID!!)
@@ -52,26 +52,14 @@ class CabinetViewViewModel @Inject constructor(
         }
     }
 
-//    var cabinet by mutableStateOf<Cabinet?>(null)
-//        private set
-//
-//    private val _uiEvents = Channel<UiEvent>()
-//    val uiEvent = _uiEvents.receiveAsFlow()
-//
-//    init {
-//        val cabinetID = savedStateHandle.get<String>("cabinetID")
-//            .also { Log.i("cabinet", savedStateHandle.keys().toString()+" , " + savedStateHandle.get<String>("cabinetID").toString()) }
-//        if (cabinetID != "") {
-//            viewModelScope.launch {
-//                cabinet = cabinetID?.let { cabinetRepo.getCabinetById(it) }
-//                this@CabinetViewViewModel.cabinet = cabinet
-//            }
-//        }
-//    }
-
     fun onEvent(event: CabinetViewEvent){
         when(event){
-            is CabinetViewEvent -> Unit
+            is CabinetViewEvent.AddBottle ->{
+                UiEvent.Navigate(Route.ADD_EDIT_BOTTLE.route + "?cabinetID=${cabinet!!.name}" )
+            }
+            is CabinetViewEvent.OpenMenu ->{
+                println("opening menu")
+            }
         }
     }
 

@@ -2,6 +2,8 @@ package com.ahrenswett.pillminder.domain.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import com.ahrenswett.pillminder.domain.util.Type
+import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 import org.jetbrains.annotations.NotNull
 
@@ -10,13 +12,8 @@ import org.jetbrains.annotations.NotNull
 data class Consumable (
     @ColumnInfo @NotNull val name: String,
     @ColumnInfo @NotNull val volumePerUnit: Float,
-//    @ColumnInfo val form: Form,
-//    @ColumnInfo val supplementOrMedication: Type
+    @ColumnInfo @Contextual val form: String,
+//    @ColumnInfo @Contextual val supplementOrMedication: Type.
     )
 
 
-//enum class Form {
-//    TABLET,
-//    CAPSULE,
-//    POWDER
-//}

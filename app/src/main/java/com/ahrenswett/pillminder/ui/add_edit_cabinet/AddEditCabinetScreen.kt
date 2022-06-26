@@ -28,7 +28,6 @@ fun AddEditCabinetScreen(
 ){
     //Creates auto focus on Cabinet Name text field
     val focusRequester = remember { FocusRequester() }
-
     val scaffoldState = rememberScaffoldState()
 
     LaunchedEffect(key1 = true){
@@ -46,13 +45,7 @@ fun AddEditCabinetScreen(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp),
-//        floatingActionButton ={
-//            FloatingActionButton(onClick = {
-//                viewModel.onEvent(AddEditCabinetEvent.onSubmit)
-//            }) {
-//                Icon(imageVector = Icons.Default.Check, contentDescription = "Submit")
-//            }
-//        }
+
     ){
         Column(
             modifier = Modifier
@@ -67,16 +60,18 @@ fun AddEditCabinetScreen(
                     viewModel.onEvent(AddEditCabinetEvent.onNameChange(it))
                 },
                 // Responsible for submitting the cabinet name from the keyboard
-                keyboardActions = KeyboardActions(  onDone = {viewModel.onEvent(AddEditCabinetEvent.onSubmit).also { Log.i( "Executed", "Keyboard Action") }}),
+                keyboardActions = KeyboardActions(  onDone = {viewModel.onEvent(AddEditCabinetEvent.onSubmit).also{
+                    Log.i( "Executed", "Keyboard Action") }
+                }),
                 // Ensures that there is no return feature on the Keyboard replaces with a checkmark.
-                singleLine = true,
                 placeholder = {
-                    val text =   if(viewModel.cabinet != null){
-                       viewModel.cabinet?.name
-                    }else "Cabinet Name"
-                    if (text != null) Text(text = text)
+                    if(viewModel.cabinet != null) Text(text = viewModel.cabinet!!.name)
+                    else Text(text = "Cabinet Name")
                 },
-                modifier = Modifier.fillMaxWidth().focusRequester(focusRequester),
+                singleLine = true,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .focusRequester(focusRequester),
             )
         }
     }

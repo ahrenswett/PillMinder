@@ -20,8 +20,8 @@ class BottleRepoImpl(private val bottleDAO: BottleDAO, private val cabinetDAO: C
         TODO("Not yet implemented")
     }
 
-    override suspend fun addBottleToCabinet(bottle: Bottle, cabinet: Cabinet) {
-        cabinetDAO.addBottle(bottle, cabinet)
+    override suspend fun addBottle(bottle: Bottle) {
+        bottleDAO.addBottle(bottle)
     }
 
     override suspend fun deleteBottle(bottle: Bottle) {

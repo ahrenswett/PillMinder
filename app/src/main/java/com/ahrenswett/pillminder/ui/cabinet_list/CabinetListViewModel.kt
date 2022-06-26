@@ -21,7 +21,7 @@ class CabinetListViewModel @Inject constructor(
     private val cabinetRepo: CabinetRepo
 ): ViewModel() {
 
-    //TODO: needs to be more restrictive for netork and user specific values. should only get users cabinets.
+    //TODO: needs to be more restrictive for network and user specific values. should only get users cabinets.
 
     val cabinets = cabinetRepo.getCabinets()
 

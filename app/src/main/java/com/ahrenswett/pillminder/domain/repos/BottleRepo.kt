@@ -11,7 +11,7 @@ interface BottleRepo {
 
     suspend fun getBottleById(bottleId: Int): Bottle?
 
-    suspend fun addBottleToCabinet(bottle: Bottle, cabinet: Cabinet)
+    suspend fun addBottle(bottle: Bottle)
 
     suspend fun deleteBottle(bottle: Bottle)
 }

@@ -2,6 +2,7 @@ package com.ahrenswett.pillminder.ui.add_edit_cabinet
 
 import android.util.Log
 import android.util.Log.INFO
+import androidx.compose.material.Snackbar
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -57,14 +58,13 @@ class AddEditCabinetViewModel @Inject constructor(
                 viewModelScope.launch {
                     Log.i( "NAME ON SUBMIT", "Name is blank is ${name.isBlank()}, name is $name")
                     if(name.isBlank()){
-                        sendUiEvent(UiEvent.ShowSnackBar(
-                            message = "The Cabinet must have a name"
-                        ))
+                        sendUiEvent(UiEvent.ShowSnackBar("Blank Cabinet Name"))
                         return@launch
+                    }else {
+                        repo.insertCabinet(cabinet = Cabinet(name))
                     }
-                    repo.insertCabinet(cabinet = Cabinet(name))
+                    sendUiEvent(UiEvent.PopBackStack)
                 }
-                sendUiEvent(UiEvent.PopBackStack)
             }
         }
     }

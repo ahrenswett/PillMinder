@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "1d570a415ec7378338206d7f0d0d3794",
+    "identityHash": "a03db4a40b821b8a31c0e1252225a600",
     "entities": [
       {
         "tableName": "cabinets",
@@ -26,13 +26,13 @@
       },
       {
         "tableName": "bottles",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`bottleID` INTEGER PRIMARY KEY AUTOINCREMENT, `consumableID` TEXT NOT NULL, `quantityInBottle` INTEGER, `expirationDate` TEXT, `startDate` TEXT, `cabinetID` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`bottleid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `consumableID` TEXT NOT NULL, `quantityInBottle` INTEGER, `expirationDate` TEXT, `startDate` TEXT, `cabinetID` TEXT NOT NULL)",
         "fields": [
           {
-            "fieldPath": "bottleID",
-            "columnName": "bottleID",
+            "fieldPath": "bottleid",
+            "columnName": "bottleid",
             "affinity": "INTEGER",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "consumableID",
@@ -67,7 +67,7 @@
         ],
         "primaryKey": {
           "columnNames": [
-            "bottleID"
+            "bottleid"
           ],
           "autoGenerate": true
         },
@@ -76,7 +76,7 @@
       },
       {
         "tableName": "consumables",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`name` TEXT NOT NULL, `volumePerUnit` REAL NOT NULL, PRIMARY KEY(`name`, `volumePerUnit`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`name` TEXT NOT NULL, `volumePerUnit` REAL NOT NULL, `form` TEXT NOT NULL, PRIMARY KEY(`name`, `volumePerUnit`))",
         "fields": [
           {
             "fieldPath": "name",
@@ -88,6 +88,12 @@
             "fieldPath": "volumePerUnit",
             "columnName": "volumePerUnit",
             "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "form",
+            "columnName": "form",
+            "affinity": "TEXT",
             "notNull": true
           }
         ],
@@ -105,7 +111,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '1d570a415ec7378338206d7f0d0d3794')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a03db4a40b821b8a31c0e1252225a600')"
     ]
   }
 }
