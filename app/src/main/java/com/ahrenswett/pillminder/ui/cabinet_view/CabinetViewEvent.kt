@@ -1,10 +1,11 @@
 package com.ahrenswett.pillminder.ui.cabinet_view
 
 import com.ahrenswett.pillminder.domain.model.Bottle
+import com.ahrenswett.pillminder.domain.model.Cabinet
 
 sealed class CabinetViewEvent {
     // Add a Bottle
-    object AddBottle: CabinetViewEvent()
+    data class AddBottle(val cabinetID: String): CabinetViewEvent()
     // Open Menu
     object OpenMenu : CabinetViewEvent()
     // Expand Bottle Description

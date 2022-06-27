@@ -7,7 +7,6 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ahrenswett.pillminder.domain.model.Cabinet
 import com.ahrenswett.pillminder.domain.repos.BottleRepo
 import com.ahrenswett.pillminder.domain.repos.CabinetRepo
@@ -44,18 +43,19 @@ class CabinetViewViewModel @Inject constructor(
         )
         val cabinetID = savedStateHandle.get<String>("cabinetID")
 
-        if (cabinetID != "") {
-            viewModelScope.launch {
-                cabinet = cabinetRepo.getCabinetById(cabinetID!!)
-                this@CabinetViewViewModel.cabinet = cabinet
-            }
+        viewModelScope.launch {
+            cabinet = cabinetRepo.getCabinetById(cabinetID!!)
+            this@CabinetViewViewModel.cabinet = cabinet
         }
     }
 
     fun onEvent(event: CabinetViewEvent){
         when(event){
             is CabinetViewEvent.AddBottle ->{
-                UiEvent.Navigate(Route.ADD_EDIT_BOTTLE.route + "?cabinetID=${cabinet!!.name}" )
+                println("CabinetViewViewModel AddBottle")
+                sendUiEvent(
+                    UiEvent.Navigate(Route.ADD_EDIT_BOTTLE.route + "?cabinetID=${event.cabinetID}" )
+                )
             }
             is CabinetViewEvent.OpenMenu ->{
                 println("opening menu")

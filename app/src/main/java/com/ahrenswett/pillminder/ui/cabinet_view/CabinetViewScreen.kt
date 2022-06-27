@@ -36,6 +36,7 @@ import kotlinx.coroutines.flow.collect
 
 @Composable
 fun CabinetViewScreen(
+    onNavigate: (UiEvent.Navigate) -> Unit,
     onPopBackStack: () -> Unit,
     viewModel : CabinetViewViewModel = hiltViewModel(),
 ){
@@ -47,6 +48,7 @@ fun CabinetViewScreen(
     LaunchedEffect(key1 = true){
         viewModel.uiEvent.collect { event ->
             when(event){
+                is UiEvent.Navigate -> onNavigate(event)
                 is UiEvent.PopBackStack -> onPopBackStack()
                 else -> Unit
             }
@@ -70,7 +72,8 @@ fun CabinetViewScreen(
         },
         floatingActionButton = {
             FloatingActionButton(onClick = {
-                viewModel.onEvent(CabinetViewEvent.AddBottle)
+                println("FloatingActionButton clicked, cabinet: ${cabinet?.name}")
+                viewModel.onEvent(CabinetViewEvent.AddBottle(cabinet!!.name))
             }) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = "Add")
             }
