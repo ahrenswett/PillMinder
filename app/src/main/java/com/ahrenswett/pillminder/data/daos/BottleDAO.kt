@@ -13,8 +13,8 @@ interface BottleDAO {
     @Query("SELECT * FROM bottles")
     fun getBottles() : Flow<List<Bottle>>
 
-//    @Insert(onConflict = OnConflictStrategy.ABORT)
-//    suspend fun addBottleToCabinet(cabinet: String)
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    suspend fun addBottle(bottle: Bottle)
 
     @Delete
     suspend fun deleteBottle(bottle: Bottle)

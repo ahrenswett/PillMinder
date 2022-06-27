@@ -2,6 +2,7 @@ package com.ahrenswett.pillminder.ui.add_edit_cabinet
 
 import android.util.Log
 import android.util.Log.INFO
+import androidx.compose.material.Snackbar
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -34,13 +35,12 @@ class AddEditCabinetViewModel @Inject constructor(
     val uiEvent = _uiEvents.receiveAsFlow()
 
     init{
+        /*TODO Fix case of editing name of cabinet*/
 //        in case of edit to cabinet name
-        Log.i("AddEditCabinetViewModel","${cabinet?.let { savedStateHandle.get<String>(it.name) }}")
-        val cabinetId = cabinet?.let { savedStateHandle.get<String>(it.name) }
-        if(cabinet != null){
+        val cabinetID = savedStateHandle.get<String>("cabinetID")
+        if(cabinetID != ""){
             viewModelScope.launch {
-                cabinet = cabinetId?.let { repo.getCabinetById(it)}
-                name = cabinet!!.name
+                cabinet = repo.getCabinetById(cabinetID!!)
                 this@AddEditCabinetViewModel.cabinet = cabinet
             }
         }
@@ -56,13 +56,13 @@ class AddEditCabinetViewModel @Inject constructor(
                 //put cabinet in the database
                 viewModelScope.launch {
                     if(name.isBlank()){
-                        sendUiEvent(UiEvent.ShowSnackBar(
-                            message = "The Cabinet must have a name"
-                        ))
+                        sendUiEvent(UiEvent.ShowSnackBar("Blank Cabinet Name"))
+                        return@launch
+                    }else {
+                        repo.insertCabinet(cabinet = Cabinet(name))
                     }
-                    repo.insertCabinet(cabinet = Cabinet(name))
+                    sendUiEvent(UiEvent.PopBackStack)
                 }
-                sendUiEvent(UiEvent.PopBackStack)
             }
         }
     }

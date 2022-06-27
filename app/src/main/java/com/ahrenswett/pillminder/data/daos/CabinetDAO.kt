@@ -12,7 +12,7 @@ interface CabinetDAO {
     @Query("SELECT * FROM cabinets")
     fun getCabinets(): Flow<List<Cabinet>>
 
-    @Insert(onConflict = OnConflictStrategy.ABORT)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addNewCabinet(cabinet: Cabinet)
 
     @Insert(onConflict = OnConflictStrategy.ABORT)
