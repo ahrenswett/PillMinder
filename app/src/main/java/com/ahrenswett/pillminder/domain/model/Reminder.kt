@@ -2,12 +2,13 @@ package com.ahrenswett.pillminder.domain.model
 
 
 ///* TODO: Time picker: allow users to choose a time they would like to be reminded and stop being reminded
-//    Allow useres to chose between single time and interval time
-//    interval time allows users to chose an initial reminder time a duration for the reminder and a number of other reminders spaced evenly across X hours
+//    Allow users to chose between single time and interval time as well a choose a reminder duration. A duration will remind only for x hours then log as missed.
+//      interval time allows users to chose an initial reminder time and X number of other reminders spaced evenly across Y hours
 //        for example:
 //            a user takes the same pill 3 times a day and is awake from 6am - 10pm
 //            they would like initial reminder at 7am and then every 6 hours so at 1pm and 7pm
 //            do not remind after 10 pm is a failsafe
+//            if the user takes the pill at 7pm, they would like to be reminded at 7pm and then every 6 hours after that
 //
 //
 // */

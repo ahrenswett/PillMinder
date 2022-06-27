@@ -14,6 +14,7 @@ class Trie<Key> (private val root: TrieNode<Key> = TrieNode<Key>( key = null, pa
        currentNode.isEnd = true
     }
 
+
     fun contains(list : List<Key>): Boolean{
         var currentNode = root
         list.forEach{ key ->
@@ -22,8 +23,9 @@ class Trie<Key> (private val root: TrieNode<Key> = TrieNode<Key>( key = null, pa
             }
             else return false
         }
-        return true
+        return currentNode.isEnd // if its in the trie it could be false if a plural word is in the trie but the singular is not
     }
+
 
     fun getFirst5(key: Key): List<String>{
     //        builder to build each string
