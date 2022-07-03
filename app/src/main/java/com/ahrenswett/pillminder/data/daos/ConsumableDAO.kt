@@ -11,7 +11,7 @@ interface ConsumableDAO {
     @Insert(onConflict = OnConflictStrategy.ABORT)
     suspend fun addNewConsumable(consumable: Consumable)
 
-    @Query("Select * FROM consumables WHERE name AND volumePerUnit =:consumable")
+    @Query("Select * FROM consumables WHERE name AND measurementPerUnit =:consumable")
     suspend fun getConsumableById(consumable: String): Consumable
 
     @Delete

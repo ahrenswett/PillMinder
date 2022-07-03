@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "a03db4a40b821b8a31c0e1252225a600",
+    "identityHash": "74c10871eb287c079c32cd15f6c16e2d",
     "entities": [
       {
         "tableName": "cabinets",
@@ -76,7 +76,7 @@
       },
       {
         "tableName": "consumables",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`name` TEXT NOT NULL, `volumePerUnit` REAL NOT NULL, `form` TEXT NOT NULL, PRIMARY KEY(`name`, `volumePerUnit`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`name` TEXT NOT NULL, `measurementPerUnit` REAL NOT NULL, `form` TEXT NOT NULL, PRIMARY KEY(`name`, `measurementPerUnit`))",
         "fields": [
           {
             "fieldPath": "name",
@@ -85,8 +85,8 @@
             "notNull": true
           },
           {
-            "fieldPath": "volumePerUnit",
-            "columnName": "volumePerUnit",
+            "fieldPath": "measurementPerUnit",
+            "columnName": "measurementPerUnit",
             "affinity": "REAL",
             "notNull": true
           },
@@ -100,7 +100,7 @@
         "primaryKey": {
           "columnNames": [
             "name",
-            "volumePerUnit"
+            "measurementPerUnit"
           ],
           "autoGenerate": false
         },
@@ -111,7 +111,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a03db4a40b821b8a31c0e1252225a600')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '74c10871eb287c079c32cd15f6c16e2d')"
     ]
   }
 }

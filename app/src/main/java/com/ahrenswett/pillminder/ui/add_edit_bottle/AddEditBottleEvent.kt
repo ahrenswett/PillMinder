@@ -4,6 +4,8 @@ package com.ahrenswett.pillminder.ui.add_edit_bottle
 sealed class AddEditBottleEvent{
     data class OnNameChange(val consumableID : String) : AddEditBottleEvent()
     data class OnQuantityChange(val quantity : Int) :AddEditBottleEvent()
+    data class OnDoseChange(val dose : Int) : AddEditBottleEvent()
+    data class OnMeasurementChange(val measurement : Float) : AddEditBottleEvent()
     data class OnExpirationDateChange(val expirationDate : String) : AddEditBottleEvent()
     data class OnStartDateChange(val startDate: String) : AddEditBottleEvent()
 

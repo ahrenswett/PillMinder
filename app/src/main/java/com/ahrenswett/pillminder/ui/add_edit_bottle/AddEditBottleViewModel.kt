@@ -48,6 +48,8 @@ class AddEditBottleViewModel @Inject constructor(
 
     var startDate by mutableStateOf("") /* TODO Make a date picker event */
         private set
+    var mesurementPerUnit by mutableStateOf(0F)
+        private set
 
 //  CabinetID bottle belongs/will belong to
     val cabinetID = savedStateHandle.get<String>("cabinetID")
@@ -66,6 +68,9 @@ class AddEditBottleViewModel @Inject constructor(
             is AddEditBottleEvent.OnQuantityChange -> {
                 quantity = event.quantity
             }
+            is AddEditBottleEvent.OnMeasurementChange -> {
+                mesurementPerUnit = event.measurement
+            }
             // Submit a new Bottle and Consumable to the database
             is AddEditBottleEvent.OnSubmit ->{
                 viewModelScope.launch {
@@ -77,10 +82,16 @@ class AddEditBottleViewModel @Inject constructor(
                         startDate = startDate,
                         cabinetID = cabinetID!!
                     )
-                    TODO("Create a new Consumable or get the ID of an existing Consumable. Implement a trie to search for a Consumable by name")
-                    //
-
+//  TODO ("Implement a trie to search for a Consumable by name as its typed in the TextField if none found create a new Consumable")
+                    val newConsumable = Consumable(
+                        name = name,
+                        measurementPerUnit = mesurementPerUnit, // TODO("Add a measurement Spinner")
+                        form = "Tablet" // TODO ("Add a form spinner")
+                    )
+                    bottleRepo.addBottle(newBottle)
+                    consumableRepo.addNewConsumable(newConsumable)
                 }
+                sendUiEvent(UiEvent.PopBackStack)
             }
         }
     }

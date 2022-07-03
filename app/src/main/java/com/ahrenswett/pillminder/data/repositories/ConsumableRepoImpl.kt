@@ -15,7 +15,7 @@ class ConsumableRepoImpl (private val dao: ConsumableDAO): ConsumableRepo {
     }
 
     override suspend fun getConsumableById(consumable: Consumable): Consumable {
-        return dao.getConsumableById(consumable.name+consumable.volumePerUnit)
+        return dao.getConsumableById(consumable.name+consumable.measurementPerUnit)
     }
 
     override suspend fun deleteConsumable(consumable: Consumable) {

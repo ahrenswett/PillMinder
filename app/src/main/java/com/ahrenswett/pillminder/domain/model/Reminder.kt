@@ -9,7 +9,7 @@ package com.ahrenswett.pillminder.domain.model
 //            they would like initial reminder at 7am and then every 6 hours so at 1pm and 7pm
 //            do not remind after 10 pm is a failsafe
 //            if the user takes the pill at 7pm, they would like to be reminded at 7pm and then every 6 hours after that
-//
+//     times converted to string and stored in database
 //
 // */
 //

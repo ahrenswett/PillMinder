@@ -5,30 +5,36 @@ import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 
 @Entity(tableName = "bottles")
-@Serializable
+//@Serializable
 data class Bottle(
-@PrimaryKey(autoGenerate = true) val bottleid: Int,
+    @PrimaryKey(autoGenerate = true) val bottleID: Int,
     @ColumnInfo var consumableID: String,
     @ColumnInfo var quantityInBottle: Int?,
-//    @Embedded var prescription : Prescription?,
+    @Embedded var prescription: Prescription,
+    @ColumnInfo var form : String,
 //    @Embedded var measurement: Measurement?,
-//    @Embedded var reminder: Reminder?,
+
     @ColumnInfo @Contextual val expirationDate: String?,
     @ColumnInfo @Contextual var startDate: String?,
-    @ColumnInfo val cabinetID: String
+    @ColumnInfo val cabinetID: String,
+    @Embedded var reminderID: String?,
 ) {
     constructor(
         consumableID: String,
         quantityInBottle: Int?,
+        prescription: Prescription,
         expirationDate: String?,
         startDate: String?,
-        cabinetID: String
+        cabinetID: String,
+        reminderID: String?
     ) : this(
         0,
         consumableID,
         quantityInBottle,
+        prescription,
         expirationDate,
         startDate,
-        cabinetID
+        cabinetID,
+        reminderID,
     )
 }

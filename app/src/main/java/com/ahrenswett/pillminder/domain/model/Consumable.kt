@@ -6,13 +6,11 @@ import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 import org.jetbrains.annotations.NotNull
 
-@Entity (tableName = "consumables", primaryKeys = ["name", "volumePerUnit"])
-@Serializable
+@Entity (tableName = "consumables", primaryKeys = ["name", "measurementPerUnit"])
+//@Serializable
 data class Consumable (
     @ColumnInfo @NotNull val name: String,
-    @ColumnInfo @NotNull val volumePerUnit: Float,
+    @ColumnInfo @NotNull val measurementPerUnit: Float,
     @ColumnInfo @Contextual val form: String,
-//    @ColumnInfo @Contextual val supplementOrMedication: Type.
+    @ColumnInfo @NotNull val medication: Boolean,
     )
-
-
