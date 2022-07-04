@@ -22,12 +22,6 @@ import kotlinx.coroutines.flow.collect
 fun AddEditBottleScreen(
     onPopBackStack: () -> Unit,
     viewModel : AddEditBottleViewModel = hiltViewModel(),
-    questionList: List<String> = listOf(
-        "Is this  a Medication or a Supplement?",
-        "What's in the the bottle?",
-        "What is the dose of the bottle?",
-        "What is the expiration date of the bottle?"
-    )
 ) {
     val focusRequester = remember { FocusRequester() }
     val scaffoldState = rememberScaffoldState()
@@ -43,6 +37,7 @@ fun AddEditBottleScreen(
     }
     //TODO: Validate form so that all fields are filled out before allowing user to save.
     // or just navigate through questions and allow user to save when they are done.
+
     Scaffold(
         scaffoldState = scaffoldState,
         modifier = Modifier

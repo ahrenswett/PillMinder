@@ -11,32 +11,29 @@ data class Bottle(
     @ColumnInfo var consumableID: String,
     @ColumnInfo var quantityInBottle: Int?,
     @Embedded var prescription: Prescription,
-    @ColumnInfo var form : String,
 //    @Embedded var measurement: Measurement?,
 
     @ColumnInfo @Contextual val expirationDate: String?,
     @ColumnInfo @Contextual var startDate: String?,
     @ColumnInfo val cabinetID: String,
-    @Embedded var reminderID: String?,
+//    @Embedded var reminderID: String?,
 ) {
     constructor(
         consumableID: String,
         quantityInBottle: Int?,
         prescription: Prescription,
-        form : String,
         expirationDate: String?,
         startDate: String?,
         cabinetID: String,
-        reminderID: String?
+//        reminderID: String?
     ) : this(
         0,
         consumableID,
         quantityInBottle,
         prescription,
-        form,
         expirationDate,
         startDate,
         cabinetID,
-        reminderID,
+//        reminderID,
     )
 }

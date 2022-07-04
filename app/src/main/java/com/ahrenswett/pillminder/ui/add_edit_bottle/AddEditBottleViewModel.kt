@@ -6,8 +6,11 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.room.ColumnInfo
 import com.ahrenswett.pillminder.domain.model.Bottle
 import com.ahrenswett.pillminder.domain.model.Consumable
+import com.ahrenswett.pillminder.domain.model.Form
+import com.ahrenswett.pillminder.domain.model.Prescription
 import com.ahrenswett.pillminder.domain.repos.BottleRepo
 import com.ahrenswett.pillminder.domain.repos.ConsumableRepo
 import com.ahrenswett.pillminder.util.UiEvent
@@ -22,6 +25,19 @@ class AddEditBottleViewModel @Inject constructor(
     private val bottleRepo: BottleRepo,
     private val consumableRepo: ConsumableRepo,
     savedStateHandle: SavedStateHandle,
+    private val Questions : List<String> = listOf<String>(
+        "Is this a medication?",
+        "What is the name of the bottle contents?",
+        "How many servings are in the bottle?",
+        "What is the form of this item",
+        "how is this item measured",
+        "What is the dose for this item?",
+        "How many times a day is this taken?",
+        "What's the prescribers name?",
+        "What's the prescribers phone number?",
+        "what is the expiration date?",
+        "when was this item started?",
+    ),
 ): ViewModel() {
 
 //  Bottle to pre populate the form when editing an existing bottle
@@ -43,13 +59,28 @@ class AddEditBottleViewModel @Inject constructor(
     var quantity by mutableStateOf(0)
         private set
 
+    var dose by mutableStateOf(0)
+        private set
+
     var expirationDate by mutableStateOf("") /* TODO Make a date picker event */
         private set
 
     var startDate by mutableStateOf("") /* TODO Make a date picker event */
         private set
+
     var mesurementPerUnit by mutableStateOf(0F)
         private set
+
+    //  Prescription info variables
+    var timesToTakePerDay by mutableStateOf(0)
+        private set
+
+    var prescribingDoc by mutableStateOf("")
+        private set
+
+    var phoneNumber by mutableStateOf("")
+        private set
+
 
 //  CabinetID bottle belongs/will belong to
     val cabinetID = savedStateHandle.get<String>("cabinetID")
@@ -71,6 +102,16 @@ class AddEditBottleViewModel @Inject constructor(
             is AddEditBottleEvent.OnMeasurementChange -> {
                 mesurementPerUnit = event.measurement
             }
+            is AddEditBottleEvent.OnDoseChange -> {
+                dose = event.dose
+            }
+            is AddEditBottleEvent.OnExpirationDateChange -> {
+                expirationDate = event.expirationDate
+            }
+            is AddEditBottleEvent.OnStartDateChange -> {
+                startDate = event.startDate
+            }
+
             // Submit a new Bottle and Consumable to the database
             is AddEditBottleEvent.OnSubmit ->{
                 viewModelScope.launch {
@@ -78,6 +119,12 @@ class AddEditBottleViewModel @Inject constructor(
                     val newBottle = Bottle(
                         consumableID = name,
                         quantityInBottle = quantity,
+                        prescription = Prescription(
+                            dose = dose,
+                            timesToTakePerDay = timesToTakePerDay,
+                            prescribingDoc = prescribingDoc,
+                            phoneNumber = phoneNumber,
+                        ),
                         expirationDate = expirationDate,
                         startDate = startDate,
                         cabinetID = cabinetID!!
@@ -86,7 +133,8 @@ class AddEditBottleViewModel @Inject constructor(
                     val newConsumable = Consumable(
                         name = name,
                         measurementPerUnit = mesurementPerUnit, // TODO("Add a measurement Spinner")
-                        form = "Tablet" // TODO ("Add a form spinner")
+                        medication = true, // TODO("Add a medication checkbox")
+                        form = Form.TABLET.form, // TODO("Add a form Spinner")
                     )
                     bottleRepo.addBottle(newBottle)
                     consumableRepo.addNewConsumable(newConsumable)

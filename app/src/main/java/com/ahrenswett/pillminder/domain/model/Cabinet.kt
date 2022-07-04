@@ -2,15 +2,16 @@ package com.ahrenswett.pillminder.domain.model
 
 import androidx.annotation.NonNull
 import androidx.room.*
+import kotlinx.coroutines.flow.Flow
 import kotlinx.serialization.Serializable
 
 @Entity(tableName = "cabinets")
-@Serializable
+//@Serializable
 data class Cabinet(
     @NonNull
     @PrimaryKey @ColumnInfo(name = "cabinet") var name: String,
 
-//    @Serializable var bottleList: List<Bottle>
+// var bottleList: Flow<List<Bottle>>
 
 //    val owner: User
 //    var userList: List<User>
