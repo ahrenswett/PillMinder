@@ -1,7 +1,6 @@
 package com.ahrenswett.pillminder.ui.cabinet_list
 
-import android.util.Log
-import androidx.lifecycle.SavedStateHandle
+
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ahrenswett.pillminder.domain.repos.BottleRepo
@@ -18,7 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class CabinetListViewModel @Inject constructor(
     // could these be injected into one class and then injected here?
-    private val cabinetRepo: CabinetRepo
+    cabinetRepo: CabinetRepo
 ): ViewModel() {
 
     //TODO: needs to be more restrictive for network and user specific values. should only get users cabinets.
@@ -38,7 +37,6 @@ class CabinetListViewModel @Inject constructor(
                      UiEvent.Navigate(Route.CABINET_VIEW.route + "?cabinetID=${event.cabinet.name}")
                  )
              }
-             else -> Unit
          }
     }
 

@@ -26,6 +26,7 @@ class CabinetViewViewModel @Inject constructor(
     private val consumableRepo: ConsumableRepo,
     savedStateHandle : SavedStateHandle
 ):ViewModel() {
+
     var cabinet by mutableStateOf<Cabinet?>(null)
         private set
 

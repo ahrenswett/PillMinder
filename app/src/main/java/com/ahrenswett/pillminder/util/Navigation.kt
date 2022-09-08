@@ -1,8 +1,8 @@
 package com.ahrenswett.pillminder
 
+//import com.ahrenswett.pillminder.ui.composables.AddConsumableBottle
 import android.util.Log
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavArgument
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -10,14 +10,9 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.ahrenswett.pillminder.ui.add_edit_bottle.AddEditBottleScreen
 import com.ahrenswett.pillminder.ui.add_edit_cabinet.AddEditCabinetScreen
-import com.ahrenswett.pillminder.ui.cabinet_list.CabinetListViewModel
 import com.ahrenswett.pillminder.ui.cabinet_view.CabinetViewScreen
-//import com.ahrenswett.pillminder.ui.composables.AddConsumableBottle
 import com.ahrenswett.pillminder.ui.composables.CabinetListScreen
 import com.ahrenswett.pillminder.util.Route
-import com.ahrenswett.pillminder.util.UiEvent
-import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.lifecycle.HiltViewModel
 
 
 @Composable

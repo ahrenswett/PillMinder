@@ -45,68 +45,76 @@ fun AddEditBottleScreen(
             .padding(16.dp)
     ) {
         Column {
-
-//    ***********  Bottle Name Text Field *************
-            OutlinedTextField(
-                value = viewModel.name,
-                onValueChange = {
-                    viewModel.onEvent(AddEditBottleEvent.OnNameChange(it))
-                },
-                singleLine = true,
-                placeholder = {
-                    if (viewModel.name.isEmpty()) Text("Name")
-                    else Text(viewModel.name)
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .focusRequester(focusRequester),
-                label = { Text("Contents Name") }
-            )
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-//    ***********  Bottle Quanitity Text Field *************
-            OutlinedTextField(
-                value = viewModel.quantity.toString(),
-                onValueChange = {
-                    viewModel.onEvent(AddEditBottleEvent.OnQuantityChange(it.toInt()))
-                },
-                singleLine = true,
-                placeholder = {
-                    if (viewModel.quantity == 0) Text("Enter Quantity")
-                    else Text(viewModel.quantity.toString())
-                },
-                modifier = Modifier
-                    .fillMaxWidth(),
-                label = { Text("Quantity in Bottle") }
-            )
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            OutlinedTextField(
-                //TODO: Measurement starts at end of float does not overwrite existing zeros :(
-                value = viewModel.mesurementPerUnit.toString(),
-                onValueChange = {
-                    viewModel.onEvent(AddEditBottleEvent.OnMeasurementChange(it.toFloat()))
-                },
-                keyboardActions = KeyboardActions(  onDone = {viewModel.onEvent(AddEditBottleEvent.OnSubmit)}),
-                singleLine = true,
-                placeholder = {
-                    if (viewModel.mesurementPerUnit == 0F) Text("Enter a Measurement Amount")
-                    else Text(viewModel.mesurementPerUnit.toString())
-                },
-                modifier = Modifier
-                    .fillMaxWidth(),
-                label = { Text("Measurement Per Unit") }
-            )
-            Spacer(modifier = Modifier.height(16.dp))
-
-//    ***********  StartDate Picker *************
-            //TODO: Add Date Picker
-//    ***********  ExpirationDate Picker  *************
-            //TODO: Add Date Picker
-
+//            for (question in viewModel.questions) {
+//                when(question){
+//                    //TODO: Add support for multiple answers enums or sealed class hashmap? or list? then ifs to detemine which questions to show based on med or not
+//                    is()
+//                }
+//                //    ***********  Bottle Name Text Field *************
+//                OutlinedTextField(
+//                    value = viewModel.name,
+//                    onValueChange = {
+//                        viewModel.onEvent(AddEditBottleEvent.OnNameChange(it))
+//                    },
+//                    singleLine = true,
+//                    placeholder = {
+//                        if (viewModel.name.isEmpty()) Text("Name")
+//                        else Text(viewModel.name)
+//                    },
+//                    modifier = Modifier
+//                        .fillMaxWidth()
+//                        .focusRequester(focusRequester),
+//                    label = { Text("Contents Name") }
+//                )
+//
+//                Spacer(modifier = Modifier.height(16.dp))
+//
+//                //    ***********  Bottle Quanitity Text Field *************
+//                OutlinedTextField(
+//                    value = viewModel.quantity.toString(),
+//                    onValueChange = {
+//                        viewModel.onEvent(AddEditBottleEvent.OnQuantityChange(it.toInt()))
+//                    },
+//                    singleLine = true,
+//                    placeholder = {
+//                        if (viewModel.quantity == 0) Text("Enter Quantity")
+//                        else Text(viewModel.quantity.toString())
+//                    },
+//                    modifier = Modifier
+//                        .fillMaxWidth(),
+//                    label = { Text("Quantity in Bottle") }
+//                )
+//
+//                Spacer(modifier = Modifier.height(16.dp))
+//
+//                OutlinedTextField(
+//                    //TODO: Measurement starts at end of float does not overwrite existing zeros :(
+//                    value = viewModel.mesurementPerUnit.toString(),
+//                    onValueChange = {
+//                        viewModel.onEvent(AddEditBottleEvent.OnMeasurementChange(it.toFloat()))
+//                    },
+//                    keyboardActions = KeyboardActions(onDone = {
+//                        viewModel.onEvent(
+//                            AddEditBottleEvent.OnSubmit
+//                        )
+//                    }),
+//                    singleLine = true,
+//                    placeholder = {
+//                        if (viewModel.mesurementPerUnit == 0F) Text("Enter a Measurement Amount")
+//                        else Text(viewModel.mesurementPerUnit.toString())
+//                    },
+//                    modifier = Modifier
+//                        .fillMaxWidth(),
+//                    label = { Text("Measurement Per Unit") }
+//                )
+//                Spacer(modifier = Modifier.height(16.dp))
+//
+//                //    ***********  StartDate Picker *************
+//                //TODO: Add Date Picker
+//                //    ***********  ExpirationDate Picker  *************
+//                //TODO: Add Date Picker
+//
+//            }
         }
-        
     }
 }

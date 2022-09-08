@@ -20,6 +20,7 @@ import javax.inject.Singleton
 object AppModule {
 
     //Create the Database
+
     @Provides
     @Singleton
     fun providePillMinderDatabase(app: Application): PillMinderDatabase{

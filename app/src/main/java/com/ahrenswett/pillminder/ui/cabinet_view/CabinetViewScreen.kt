@@ -5,12 +5,11 @@ import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -41,6 +40,9 @@ fun CabinetViewScreen(
     viewModel : CabinetViewViewModel = hiltViewModel(),
 ){
     val scaffoldState = rememberScaffoldState()
+    var tabIndex by remember { mutableStateOf(0)}
+    var tabTitles = listOf("Medication","Supplements")
+
     val cabinet = viewModel.cabinet
     cabinet?.name?.let { Log.i( "CabinetViewScreen", it) }
 
@@ -79,29 +81,17 @@ fun CabinetViewScreen(
             }
         }
     ){
-//        val tabs = {
-//
-//        }
+
+//        Tabs for displaying
         Column() {
-//            TabRow(
-//                selectedTabIndex = 1,
-//                tabs = {
-//                    Tab(selected = true, text = "Medication") {
-//                        LazyColumn(modifier = Modifier.fillMaxWidth()) {
-//                            viewModel.bottles.collectAsState().value.forEach { bottle ->
-//                                BottleCard(bottle = bottle)
-//                            }
-//                        }
-//                    }
-//                    Tab(text = "Supplements") {
-//                        LazyColumn(modifier = Modifier.fillMaxWidth()) {
-//                            viewModel.reminders.collectAsState().value.forEach { reminder ->
-//                                ReminderCard(reminder = reminder)
-//                            }
-//                        }
-//                    }
-//                }
-//            )
+            TabRow( selectedTabIndex = tabIndex ) {
+                tabTitles.forEachIndexed { index, title ->
+                    Tab(selected = tabIndex == index,
+                        onClick = { tabIndex = index },
+                        text = { Text(text = title) }
+                    )
+                }
+            }
         }
 
     }

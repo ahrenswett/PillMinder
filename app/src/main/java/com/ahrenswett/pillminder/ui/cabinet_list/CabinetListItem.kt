@@ -56,7 +56,7 @@ fun CabinetListItem(
             fontWeight = FontWeight.Bold,
         )
         IconButton(
-            onClick = {/*TODO*/},
+            onClick = { /*TODO()*/},
         ){
             Icon(imageVector = Icons.Default.Add, contentDescription = "Add")
         }

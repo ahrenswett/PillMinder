@@ -25,19 +25,19 @@ class AddEditBottleViewModel @Inject constructor(
     private val bottleRepo: BottleRepo,
     private val consumableRepo: ConsumableRepo,
     savedStateHandle: SavedStateHandle,
-    private val Questions : List<String> = listOf<String>(
-        "Is this a medication?",
-        "What is the name of the bottle contents?",
-        "How many servings are in the bottle?",
-        "What is the form of this item",
-        "how is this item measured",
-        "What is the dose for this item?",
-        "How many times a day is this taken?",
-        "What's the prescribers name?",
-        "What's the prescribers phone number?",
-        "what is the expiration date?",
-        "when was this item started?",
-    ),
+//    val questions : List<String> = listOf<String>(
+//        "Is this a medication?",
+//        "What is the name of the bottle contents?",
+//        "How many servings are in the bottle?",
+//        "What is the form of this item",
+//        "how is this item measured",
+//        "What is the dose for this item?",
+//        "How many times a day is this taken?",
+//        "What's the prescribers name?",
+//        "What's the prescribers phone number?",
+//        "what is the expiration date?",
+//        "when was this item started?",
+//    ),
 ): ViewModel() {
 
 //  Bottle to pre populate the form when editing an existing bottle
