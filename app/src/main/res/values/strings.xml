@@ -2,5 +2,6 @@
     <string name="app_name">PillMinder</string>
     <string name="view_reminders_text">View your medication &amp;\nsupplement reminders</string>
     <string name="add_reminder">Add Medication or \nSupplement Reminder</string>
-
+    <string name="name">Name</string>
+<!--    <string name=""></string>-->
 </resources>

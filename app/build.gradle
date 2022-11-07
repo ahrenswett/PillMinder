@@ -5,6 +5,10 @@ plugins {
     id 'dagger.hilt.android.plugin'
     id 'kotlinx-serialization'
 }
+task wrapper(type: Wrapper){
+    gradleVersion = '7.2'
+}
+tasks.register("prepareKotlinBuildScriptModel"){}
 
 android {
     compileSdk 31
