@@ -37,7 +37,7 @@ class CabinetViewViewModel @Inject constructor(
 
     init {
         /*TODO Fix case of editing name of cabinet*/
-//        in case of edit to cabinet name
+//      in case of edit to cabinet name
         Log.i(
             "AddEditCabinetViewModel",
             "${savedStateHandle.keys()}, ${savedStateHandle.get<String?>("cabinetID")}"

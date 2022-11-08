@@ -27,13 +27,13 @@ data class Bottle(
         cabinetID: String,
 //        reminderID: String?
     ) : this(
-        0,
-        consumableID,
-        quantityInBottle,
-        prescription,
-        expirationDate,
-        startDate,
-        cabinetID,
+        bottleID = 0,
+        consumableID = consumableID,
+        quantityInBottle = quantityInBottle,
+        prescription = prescription,
+        expirationDate = expirationDate,
+        startDate = startDate,
+        cabinetID = cabinetID,
 //        reminderID,
     )
 }
