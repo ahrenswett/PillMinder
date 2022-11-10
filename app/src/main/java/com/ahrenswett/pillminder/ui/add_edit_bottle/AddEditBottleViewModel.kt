@@ -56,6 +56,9 @@ class AddEditBottleViewModel @Inject constructor(
     var name by mutableStateOf("")
         private set
 
+    var id by mutableStateOf(0)
+        private set
+
     var quantity by mutableStateOf(0)
         private set
 
@@ -80,6 +83,7 @@ class AddEditBottleViewModel @Inject constructor(
 
     var phoneNumber by mutableStateOf("")
         private set
+
 
 
 //  CabinetID bottle belongs/will belong to
@@ -120,6 +124,7 @@ class AddEditBottleViewModel @Inject constructor(
                         consumableID = name,
                         quantityInBottle = quantity,
                         prescription = Prescription(
+                            id = id,
                             dose = dose,
                             timesToTakePerDay = timesToTakePerDay,
                             prescribingDoc = prescribingDoc,

@@ -1,6 +1,7 @@
 package com.ahrenswett.pillminder.data.type_converters
 
 import com.ahrenswett.pillminder.domain.model.Bottle
+import com.ahrenswett.pillminder.domain.model.Prescription
 import org.junit.Assert.*
 import org.junit.Test
 import java.util.*
@@ -16,12 +17,12 @@ class ConvertersTest {
 //            Date(d).time,
 //            "Ahren's"),
         Bottle(
-            2,
-            "Deote",
-            10,
+            "depakote",
+            100,
+            Prescription(1,2000,2,"Dr. Christopher Ransom",null),
             "3-3-2052",
             "5-8-2022",
-            "Ahren's"),
+            "Llama2"),
 //        Bottle(
 //            3,
 //            "Depate",

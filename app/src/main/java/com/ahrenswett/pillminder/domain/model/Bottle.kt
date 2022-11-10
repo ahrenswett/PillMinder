@@ -5,7 +5,7 @@ import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 
 @Entity(tableName = "bottles")
-//@Serializable
+@Serializable
 data class Bottle(
     @PrimaryKey(autoGenerate = true) val bottleID: Int,
     @ColumnInfo var consumableID: String,

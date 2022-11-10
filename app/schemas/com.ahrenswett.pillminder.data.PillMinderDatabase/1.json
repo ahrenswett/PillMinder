@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "31c0af7a142f87ebc8c8b87103ca599b",
+    "identityHash": "60bbbf13d40fb300c3a2571a9e8e3afb",
     "entities": [
       {
         "tableName": "cabinets",
@@ -26,7 +26,7 @@
       },
       {
         "tableName": "bottles",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`bottleID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `consumableID` TEXT NOT NULL, `quantityInBottle` INTEGER, `expirationDate` TEXT, `startDate` TEXT, `cabinetID` TEXT NOT NULL, `dose` INTEGER NOT NULL, `timesToTakePerDay` INTEGER NOT NULL, `prescribingDoc` TEXT, `phoneNumber` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`bottleID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `consumableID` TEXT NOT NULL, `quantityInBottle` INTEGER, `expirationDate` TEXT, `startDate` TEXT, `cabinetID` TEXT NOT NULL, `id` INTEGER NOT NULL, `dose` INTEGER NOT NULL, `timesToTakePerDay` INTEGER NOT NULL, `prescribingDoc` TEXT, `phoneNumber` TEXT)",
         "fields": [
           {
             "fieldPath": "bottleID",
@@ -62,6 +62,12 @@
             "fieldPath": "cabinetID",
             "columnName": "cabinetID",
             "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "prescription.id",
+            "columnName": "id",
+            "affinity": "INTEGER",
             "notNull": true
           },
           {
@@ -136,12 +142,56 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "Prescription",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `dose` INTEGER NOT NULL, `timesToTakePerDay` INTEGER NOT NULL, `prescribingDoc` TEXT, `phoneNumber` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dose",
+            "columnName": "dose",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "timesToTakePerDay",
+            "columnName": "timesToTakePerDay",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "prescribingDoc",
+            "columnName": "prescribingDoc",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "phoneNumber",
+            "columnName": "phoneNumber",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '31c0af7a142f87ebc8c8b87103ca599b')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '60bbbf13d40fb300c3a2571a9e8e3afb')"
     ]
   }
 }

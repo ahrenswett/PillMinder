@@ -1,11 +1,11 @@
 package com.ahrenswett.pillminder
 
-//import com.ahrenswett.pillminder.ui.composables.AddConsumableBottle
 import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.dialog
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.ahrenswett.pillminder.ui.add_edit_bottle.AddEditBottleScreen
@@ -30,7 +30,7 @@ fun Navigation(){
                 }
             )
         }
-//      ******************************** Cabinet Navigation ********************************
+//******************************** Cabinet Navigation ********************************
         // Navigation to AddEditCabinet
         composable(route = Route.ADD_EDIT_CABINET.route + "?cabinetID={cabinetID}",
             arguments = listOf(
@@ -59,12 +59,25 @@ fun Navigation(){
             )
         }
 
-//        *********************************** Bottle Navigation ***********************************
+//*********************************** Bottle Navigation ***********************************
 
 //        Navigate to AddEditBottle
-        composable(route = Route.ADD_EDIT_BOTTLE.route + "?cabinetID={cabinetID}",
+//        composable(route = Route.ADD_EDIT_BOTTLE.route + "?cabinetID={cabinetID}",
+//            arguments = listOf(
+//                navArgument( name = "cabinetID"){
+//                    Log.i("Navigation", "AddEditBottle")
+//                    type = NavType.StringType
+//                    defaultValue = ""
+//                }
+//            )
+//        ){
+//            Log.i("Navigation", "AddEditBottle")
+//            AddEditBottleScreen(onPopBackStack = { navController.popBackStack() })
+//        }
+
+        dialog(route = Route.ADD_EDIT_BOTTLE.route +  "?cabinetID={cabinetID}",
             arguments = listOf(
-                navArgument( name = "cabinetID"){
+                navArgument(name = "cabinetID"){
                     Log.i("Navigation", "AddEditBottle")
                     type = NavType.StringType
                     defaultValue = ""

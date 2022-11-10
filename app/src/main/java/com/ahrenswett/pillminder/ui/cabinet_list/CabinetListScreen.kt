@@ -1,5 +1,6 @@
 package com.ahrenswett.pillminder.ui.composables
 
+import android.annotation.SuppressLint
 import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxSize
@@ -24,6 +25,7 @@ import com.ahrenswett.pillminder.ui.cabinet_list.CabinetListViewModel
 import com.ahrenswett.pillminder.util.UiEvent
 import kotlinx.coroutines.flow.collect
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun CabinetListScreen(
     onNavigate: (UiEvent.Navigate) -> Unit,

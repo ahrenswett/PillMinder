@@ -39,6 +39,7 @@ import com.ahrenswett.pillminder.domain.model.Cabinet
 import com.ahrenswett.pillminder.ui.add_edit_cabinet.AddEditCabinetEvent
 import com.ahrenswett.pillminder.ui.cabinet_list.CabinetListEvent
 import com.ahrenswett.pillminder.util.UiEvent
+import com.ahrenswett.pillminder.util.WhatFormIsIt
 import kotlinx.coroutines.flow.collect
 
 /*TODO:
@@ -61,7 +62,7 @@ fun CabinetViewScreen(
     onPopBackStack: () -> Unit,
     viewModel : CabinetViewViewModel = hiltViewModel(),
 ){
-    val context = LocalContext.current
+//    val context = LocalContext.current
     val scaffoldState = rememberScaffoldState()
 
 //    Tab data
@@ -110,103 +111,109 @@ fun CabinetViewScreen(
                 }
             }
         },
-        floatingActionButton = {
+        floatingActionButton = {/*TODO: Move all logic with Dialog to Events and Add edit bottle*/
             FloatingActionButton(
-                onClick = { showCustomDialog = !showCustomDialog },
-                modifier = Modifier.wrapContentSize()
-            ){ Icon(imageVector = Icons.Default.Add, contentDescription = "Add") }
+                onClick = {
+                    viewModel.onEvent(CabinetViewEvent.AddBottle(cabinetID = cabinet!!.name))
+                }
+            ) {
+                Icon(imageVector = Icons.Default.Add, contentDescription = "Add")
+            }
         }
     ){
-        Column() {
-            if (showCustomDialog) {
-                BottleBuilder({
-                    showCustomDialog = !showCustomDialog
-                },tabTitles,tabIndex)
-            }
+//        Display Meds or suplements
+        LazyColumn(modifier = Modifier.fillMaxSize()) {
+            items()
         }
     }
 }
 
 
-@Composable
-fun BottleBuilder(onDismiss:()->Unit, radioOptions: List<String>,tabIndex: Int ){
-    val context = LocalContext.current
-    var consumableName by remember { mutableStateOf("") }
+//            floatingActionButton = {/*TODO: Move all logic with Dialog to Events and Add edit bottle*/
+//                FloatingActionButton(
+//                    onClick = { showCustomDialog = !showCustomDialog },
+//                    modifier = Modifier.wrapContentSize()
+//                ){ Icon(imageVector = Icons.Default.Add, contentDescription = "Add") }
+//            }
+//            ){
 
-    Dialog(onDismissRequest = { onDismiss }) {
-        Card(
-            shape = RoundedCornerShape(10.dp),
-            modifier = Modifier.padding(8.dp),
-            elevation = 8.dp
-        ) {
-//      Variables for radio buttons that allow choice of supplement or medication
-//            val radioOptions = listOf("Medication", "Supplement")
-            val (selectedOption, onOptionSelected) = remember { mutableStateOf(radioOptions[tabIndex] ) }
-
-            Column() {
-                Text(
-                    text = "Which would you like to add?",
-                    modifier = Modifier.padding(8.dp),
-                    fontSize = 20.sp
-                )
-
-                Row(verticalAlignment = Alignment.CenterVertically){
-                    radioOptions.forEach { option ->
-                        RadioButton(
-                            selected = (option == selectedOption),
-                            onClick = { onOptionSelected(option) },
-                        )
-                        Text(text = option.dropLast(1), fontSize = 15.sp,)
-                    }
-                }
-                OutlinedTextField(
-                    value = consumableName,
-                    onValueChange = {consumableName = it},
-                    modifier = Modifier.padding(8.dp),
-                    keyboardActions = KeyboardActions(onDone = {
-                        Toast.makeText(context, consumableName, Toast.LENGTH_SHORT).show()
-                        onDismiss() }),
-                    singleLine = true,
-                    label = { Text(text = "Enter a name")}
-                )
-                Row {
-                    OutlinedButton(
-                        onClick = { onDismiss() },
-                        Modifier
-                            .fillMaxWidth()
-                            .padding(8.dp)
-                            .weight(1F)
-                    ) {
-                        Text(text = "Cancel")
-                    }
-                    Button(
-                        onClick = {
-//                            pass it back to the VM and build up the consumable info
-                            Toast.makeText(context, consumableName, Toast.LENGTH_SHORT).show()
-                            onDismiss() },
-                        Modifier
-                            .fillMaxWidth()
-                            .padding(8.dp)
-                            .weight(1F)
-                    ) {
-                        Text(text = "Next")
-                    }
-                }
-            }
-        }
-    }
+//                        if (showCustomDialog) {
+//                            BottleBuilder({
+//                                showCustomDialog = !showCustomDialog
+//                            },tabTitles,tabIndex)
+//                        }
 
 
 
-
-
-    // state hoisting needs to be explored.
-//    TODO: build out a form that passes data bak to the view model and then to the repository/ database
-//    name: make use of the trie
-//    measurement per unit
-//    medication toggle
-//        if medication then give option for precriptions
-}
+//@Composable
+//fun BottleBuilder(onDismiss:()->Unit, radioOptions: List<String>,tabIndex: Int ){
+//    val context = LocalContext.current
+//    var consumableName by remember { mutableStateOf("") }
+//
+//    Dialog(onDismissRequest = { onDismiss }) {
+//        Card(
+//            shape = RoundedCornerShape(10.dp),
+//            modifier = Modifier.padding(8.dp),
+//            elevation = 8.dp
+//        ) {
+//            //Variables for radio buttons that allow choice of supplement or medication
+//            val (selectedOption, onOptionSelected) = remember { mutableStateOf(radioOptions[tabIndex] ) }
+//
+//            Column() {
+//                Text(
+//                    text = "Which would you like to add?",
+//                    modifier = Modifier.padding(8.dp),
+//                    fontSize = 20.sp
+//                )
+//
+//                Row(verticalAlignment = Alignment.CenterVertically){
+//                    radioOptions.forEach { option ->
+//                        RadioButton(
+//                            selected = (option == selectedOption),
+//                            onClick = { onOptionSelected(option) },
+//                        )
+//                        Text(text = option.dropLast(1), fontSize = 15.sp,)
+//                    }
+//                }
+//                OutlinedTextField(
+//                    value = consumableName,
+//                    onValueChange = {consumableName = it},
+//                    modifier = Modifier.padding(8.dp),
+//                    keyboardActions = KeyboardActions(onDone = {
+//                        Toast.makeText(context, consumableName, Toast.LENGTH_SHORT).show()
+//                        onDismiss() }),
+//                    singleLine = true,
+//                    label = { Text(text = "Enter a name")}
+//                )
+//                Row {
+//                    //Cancel Button
+//                    OutlinedButton(
+//                        onClick = { onDismiss() },
+//                        Modifier
+//                            .fillMaxWidth()
+//                            .padding(8.dp)
+//                            .weight(1F)
+//                    ) {
+//                        Text(text = "Cancel")
+//                    }
+//                    //Submit Button
+//                    Button(
+//                        onClick = {
+//
+//                            Toast.makeText(context, consumableName, Toast.LENGTH_SHORT).show()
+//                            onDismiss() },
+//                        Modifier
+//                            .fillMaxWidth()
+//                            .padding(8.dp)
+//                            .weight(1F)
+//                    ) {
+//                        Text(text = "Submit")
+//                    }
+//                }
+//            }
+//        }
+//    }
+//}
 
 
 

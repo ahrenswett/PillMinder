@@ -10,6 +10,7 @@ import com.ahrenswett.pillminder.data.type_converters.Converters
 import com.ahrenswett.pillminder.domain.model.Bottle
 import com.ahrenswett.pillminder.domain.model.Cabinet
 import com.ahrenswett.pillminder.domain.model.Consumable
+import com.ahrenswett.pillminder.domain.model.Prescription
 
 
 @Database(entities = [
@@ -17,7 +18,7 @@ import com.ahrenswett.pillminder.domain.model.Consumable
     Cabinet::class,
     Bottle::class,
     Consumable::class,
-//    Prescription::class
+    Prescription::class
 ], version = 1)
 @TypeConverters(Converters::class)
 
