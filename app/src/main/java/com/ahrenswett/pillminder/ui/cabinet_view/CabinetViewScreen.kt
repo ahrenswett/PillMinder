@@ -8,9 +8,11 @@ import android.util.Log
 import android.widget.EditText
 import android.widget.Toast
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.magnifier
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -34,8 +36,10 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import androidx.room.util.TableInfo
 import com.ahrenswett.pillminder.R
+import com.ahrenswett.pillminder.data.type_converters.Converters
 import com.ahrenswett.pillminder.domain.model.Bottle
 import com.ahrenswett.pillminder.domain.model.Cabinet
+import com.ahrenswett.pillminder.domain.model.Prescription
 import com.ahrenswett.pillminder.ui.add_edit_cabinet.AddEditCabinetEvent
 import com.ahrenswett.pillminder.ui.cabinet_list.CabinetListEvent
 import com.ahrenswett.pillminder.util.UiEvent
@@ -65,6 +69,7 @@ fun CabinetViewScreen(
 //    val context = LocalContext.current
     val scaffoldState = rememberScaffoldState()
 
+    var context = LocalContext.current
 //    Tab data
     var tabIndex by remember { mutableStateOf(0)}
     val tabTitles = listOf("Medications","Supplements")
@@ -75,6 +80,23 @@ fun CabinetViewScreen(
     var showCustomDialog by remember {
         mutableStateOf(false)
     }
+    val testList = listOf(
+        Bottle(
+            "depakote",
+            100,
+            Prescription(1,2000,2,"Dr. Christopher Ransom",null),
+            "3-3-2052",
+            "5-8-2022",
+            "Llama2"),
+        Bottle(
+            "mushies",
+            100,
+            Prescription(1,2,2,"Dr. Christopher Ransom",null),
+            "3-3-2052",
+            "5-8-2022",
+            "Llama2")
+//    TODO: Link the consumable as well
+    )
 
     LaunchedEffect(key1 = true){
         viewModel.uiEvent.collect { event ->
@@ -111,7 +133,7 @@ fun CabinetViewScreen(
                 }
             }
         },
-        floatingActionButton = {/*TODO: Move all logic with Dialog to Events and Add edit bottle*/
+        floatingActionButton = {
             FloatingActionButton(
                 onClick = {
                     viewModel.onEvent(CabinetViewEvent.AddBottle(cabinetID = cabinet!!.name))
@@ -123,7 +145,16 @@ fun CabinetViewScreen(
     ){
 //        Display Meds or suplements
         LazyColumn(modifier = Modifier.fillMaxSize()) {
-            items()
+            items(testList.size){ bottle ->
+                CabinetViewItem(
+                    bottle = testList[0],
+                    onEvent = viewModel::onEvent,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                            /*TODO(add event for passing bottle back to the viewmodel and adding to room)*/
+                        .clickable{ (Toast.makeText(context,"BOOOOOM",Toast.LENGTH_LONG).show())}
+                )
+            }
         }
     }
 }
