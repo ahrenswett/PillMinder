@@ -30,7 +30,6 @@ class CabinetViewViewModel @Inject constructor(
     var cabinet by mutableStateOf<Cabinet?>(null)
         private set
 
-
     //Event sending to UI
     private val _uiEvents = Channel<UiEvent>()
     val uiEvent = _uiEvents.receiveAsFlow()
@@ -45,6 +44,7 @@ class CabinetViewViewModel @Inject constructor(
         val cabinetID = savedStateHandle.get<String>("cabinetID")
 
         viewModelScope.launch {
+
             cabinet = cabinetRepo.getCabinetById(cabinetID!!)
             this@CabinetViewViewModel.cabinet = cabinet
         }
@@ -55,7 +55,8 @@ class CabinetViewViewModel @Inject constructor(
             is CabinetViewEvent.AddBottle ->{
                 println("CabinetViewViewModel AddBottle")
                 sendUiEvent(
-                    UiEvent.Navigate(Route.ADD_EDIT_BOTTLE.route + "?cabinetID=${event.cabinetID}" )
+                    //pass the cabinet so we have an ID  for the cabinet
+                    UiEvent.Navigate(Route.ADD_EDIT_BOTTLE.route + "?cabinetID=${event.cabinetID}?tabIndex=${event.tabIndex}" )
                 )
             }
             is CabinetViewEvent.OpenMenu ->{

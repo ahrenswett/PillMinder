@@ -14,6 +14,8 @@ import com.ahrenswett.pillminder.ui.cabinet_view.CabinetViewScreen
 import com.ahrenswett.pillminder.ui.composables.CabinetListScreen
 import com.ahrenswett.pillminder.util.Route
 
+//Documentation
+//https://developer.android.com/jetpack/compose/navigation#nav-with-args
 
 @Composable
 fun Navigation(){
@@ -32,12 +34,13 @@ fun Navigation(){
         }
 //******************************** Cabinet Navigation ********************************
         // Navigation to AddEditCabinet
-        composable(route = Route.ADD_EDIT_CABINET.route + "?cabinetID={cabinetID}",
+        dialog(route = Route.ADD_EDIT_CABINET.route + "?cabinetID={cabinetID}",
             arguments = listOf(
                 navArgument( name = "cabinetID"){
                     type = NavType.StringType
                     defaultValue = ""
-                }
+                },
+
             )
         ){
             AddEditCabinetScreen(onPopBackStack = { navController.popBackStack()})
@@ -75,17 +78,21 @@ fun Navigation(){
 //            AddEditBottleScreen(onPopBackStack = { navController.popBackStack() })
 //        }
 
-        dialog(route = Route.ADD_EDIT_BOTTLE.route +  "?cabinetID={cabinetID}",
+        dialog(route = Route.ADD_EDIT_BOTTLE.route +  "?cabinetID={cabinetID}?tabIndex={tabIndex}",
             arguments = listOf(
                 navArgument(name = "cabinetID"){
                     Log.i("Navigation", "AddEditBottle")
                     type = NavType.StringType
                     defaultValue = ""
+                },
+                navArgument(name = "tabIndex"){
+                    type = NavType.IntType
+                    defaultValue = 0
                 }
             )
         ){
             Log.i("Navigation", "AddEditBottle")
-            AddEditBottleScreen(onPopBackStack = { navController.popBackStack() })
+            AddEditBottleScreen(onPopBackStack = { navController.popBackStack() }, it.arguments)
         }
 
 

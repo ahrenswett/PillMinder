@@ -69,8 +69,8 @@ fun CabinetViewScreen(
 //    val context = LocalContext.current
     val scaffoldState = rememberScaffoldState()
 
-    var context = LocalContext.current
-//    Tab data
+    val context = LocalContext.current
+//    bottom bar tab data
     var tabIndex by remember { mutableStateOf(0)}
     val tabTitles = listOf("Medications","Supplements")
 
@@ -136,23 +136,27 @@ fun CabinetViewScreen(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
-                    viewModel.onEvent(CabinetViewEvent.AddBottle(cabinetID = cabinet!!.name))
+//                    Add new bottle to cabinet via a dialog
+                    viewModel.onEvent(CabinetViewEvent.AddBottle(cabinetID = cabinet!!.name, tabIndex = tabIndex))
                 }
             ) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = "Add")
             }
         }
     ){
-//        Display Meds or suplements
+
+//      Main section: Displays Meds or suplements based on tab selection
         LazyColumn(modifier = Modifier.fillMaxSize()) {
+
+//          TODO: Should be a list from the view model
             items(testList.size){ bottle ->
                 CabinetViewItem(
-                    bottle = testList[0],
+                    bottle = testList[bottle],
                     onEvent = viewModel::onEvent,
                     modifier = Modifier
                         .fillMaxWidth()
-                            /*TODO(add event for passing bottle back to the viewmodel and adding to room)*/
-                        .clickable{ (Toast.makeText(context,"BOOOOOM",Toast.LENGTH_LONG).show())}
+//                  TODO(go to Bottle View)
+                        .clickable{ (Toast.makeText(context,testList[bottle].consumableID,Toast.LENGTH_LONG).show())}
                 )
             }
         }

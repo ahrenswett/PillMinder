@@ -11,8 +11,10 @@ data class Cabinet(
     @NonNull
     @PrimaryKey @ColumnInfo(name = "cabinet") var name: String,
 
-// var bottleList: Flow<List<Bottle>>
+//var bottleList: Flow<List<Bottle>>
 
 //    val owner: User
 //    var userList: List<User>
 )
+
+

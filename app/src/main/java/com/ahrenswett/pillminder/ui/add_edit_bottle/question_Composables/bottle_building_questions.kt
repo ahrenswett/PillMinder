@@ -24,9 +24,10 @@ import androidx.compose.ui.window.Dialog
 //        showCustomDialog = !showCustomDialog
 /********************************* Composable to get Name of and whether or not it is medication or Supplement *********************************/
 @Composable
-fun BottleBuilder(onDismiss:()->Unit, radioOptions: List<String>,tabIndex: Int ){
+fun BottleBuilder(onDismiss: () -> Unit, tabIndex: Int) {
     val context = LocalContext.current
     var consumableName by remember { mutableStateOf("") }
+    val consumableTypesList = listOf("Medication","Supplement")
 
     Dialog(onDismissRequest = { onDismiss }) {
         Card(
@@ -34,9 +35,8 @@ fun BottleBuilder(onDismiss:()->Unit, radioOptions: List<String>,tabIndex: Int )
             modifier = Modifier.padding(8.dp),
             elevation = 8.dp
         ) {
-//      Variables for radio buttons that allow choice of supplement or medication
-//            val radioOptions = listOf("Medication", "Supplement")
-            val (selectedOption, onOptionSelected) = remember { mutableStateOf(radioOptions[tabIndex] ) }
+            //Variables for radio buttons that allow choice of supplement or medication
+            val (selectedOption, onOptionSelected) = remember { mutableStateOf(consumableTypesList[tabIndex]) }
 
             Column() {
                 Text(
@@ -45,26 +45,28 @@ fun BottleBuilder(onDismiss:()->Unit, radioOptions: List<String>,tabIndex: Int )
                     fontSize = 20.sp
                 )
 
-                Row(verticalAlignment = Alignment.CenterVertically){
-                    radioOptions.forEach { option ->
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    consumableTypesList.forEach { option ->
                         RadioButton(
                             selected = (option == selectedOption),
                             onClick = { onOptionSelected(option) },
                         )
-                        Text(text = option.dropLast(1), fontSize = 15.sp,)
+                        Text(text = option, fontSize = 15.sp,)
                     }
                 }
                 OutlinedTextField(
                     value = consumableName,
-                    onValueChange = {consumableName = it},
+                    onValueChange = { consumableName = it },
                     modifier = Modifier.padding(8.dp),
                     keyboardActions = KeyboardActions(onDone = {
                         Toast.makeText(context, consumableName, Toast.LENGTH_SHORT).show()
-                        onDismiss() }),
+                        onDismiss()
+                    }),
                     singleLine = true,
-                    label = { Text(text = "Enter a name")}
+                    label = { Text(text = "Enter a name") }
                 )
                 Row {
+                    //Cancel Button
                     OutlinedButton(
                         onClick = { onDismiss() },
                         Modifier
@@ -74,10 +76,12 @@ fun BottleBuilder(onDismiss:()->Unit, radioOptions: List<String>,tabIndex: Int )
                     ) {
                         Text(text = "Cancel")
                     }
+                    //Submit Button
                     Button(
                         onClick = {
                             Toast.makeText(context, consumableName, Toast.LENGTH_SHORT).show()
-                            onDismiss() },
+                            onDismiss()
+                        },
                         Modifier
                             .fillMaxWidth()
                             .padding(8.dp)
