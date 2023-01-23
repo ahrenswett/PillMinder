@@ -45,8 +45,7 @@ fun CabinetListItem(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(10.dp,1.dp)
-            ,
+            .padding(10.dp,1.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
@@ -56,7 +55,7 @@ fun CabinetListItem(
             fontWeight = FontWeight.Bold,
         )
         IconButton(
-            onClick = { /*TODO()*/},
+            onClick = {onEvent(CabinetListEvent.AddBottle(cabinetID = cabinet.name,0))},
         ){
             Icon(imageVector = Icons.Default.Add, contentDescription = "Add")
         }

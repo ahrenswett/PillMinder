@@ -37,6 +37,10 @@ class CabinetListViewModel @Inject constructor(
                      UiEvent.Navigate(Route.CABINET_VIEW.route + "?cabinetID=${event.cabinet.name}")
                  )
              }
+             is CabinetListEvent.AddBottle -> {
+                 sendUiEvent(
+                     UiEvent.Navigate(Route.ADD_EDIT_BOTTLE.route + "?cabinetID=${event.cabinetID}?tabIndex=${event.tabIndex}" )                 )
+             }
          }
     }
 

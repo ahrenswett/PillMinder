@@ -24,6 +24,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.ahrenswett.pillminder.domain.model.Cabinet
 import com.ahrenswett.pillminder.util.UiEvent
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.job
+
 //  https://stackoverflow.com/questions/67396976/use-dialog-as-navigation-destination-with-jetpack-compose
 
 @Composable
@@ -37,7 +39,7 @@ fun AddEditCabinetScreen(
     val context = LocalContext.current
 
     LaunchedEffect(key1 = true) {
-        focusRequester.requestFocus()
+//        focusRequester.requestFocus()
         viewModel.uiEvent.collect { event ->
             when (event) {
                 is UiEvent.PopBackStack -> onPopBackStack()

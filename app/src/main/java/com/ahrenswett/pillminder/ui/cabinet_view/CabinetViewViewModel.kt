@@ -30,6 +30,8 @@ class CabinetViewViewModel @Inject constructor(
     var cabinet by mutableStateOf<Cabinet?>(null)
         private set
 
+    val bottles = bottleRepo.getBottles()
+
     //Event sending to UI
     private val _uiEvents = Channel<UiEvent>()
     val uiEvent = _uiEvents.receiveAsFlow()

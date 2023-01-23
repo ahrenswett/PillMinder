@@ -64,19 +64,6 @@ fun Navigation(){
 
 //*********************************** Bottle Navigation ***********************************
 
-//        Navigate to AddEditBottle
-//        composable(route = Route.ADD_EDIT_BOTTLE.route + "?cabinetID={cabinetID}",
-//            arguments = listOf(
-//                navArgument( name = "cabinetID"){
-//                    Log.i("Navigation", "AddEditBottle")
-//                    type = NavType.StringType
-//                    defaultValue = ""
-//                }
-//            )
-//        ){
-//            Log.i("Navigation", "AddEditBottle")
-//            AddEditBottleScreen(onPopBackStack = { navController.popBackStack() })
-//        }
 
         dialog(route = Route.ADD_EDIT_BOTTLE.route +  "?cabinetID={cabinetID}?tabIndex={tabIndex}",
             arguments = listOf(

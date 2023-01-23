@@ -1,0 +1,197 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 2,
+    "identityHash": "60bbbf13d40fb300c3a2571a9e8e3afb",
+    "entities": [
+      {
+        "tableName": "cabinets",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`cabinet` TEXT NOT NULL, PRIMARY KEY(`cabinet`))",
+        "fields": [
+          {
+            "fieldPath": "name",
+            "columnName": "cabinet",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "cabinet"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "bottles",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`bottleID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `consumableID` TEXT NOT NULL, `quantityInBottle` INTEGER, `expirationDate` TEXT, `startDate` TEXT, `cabinetID` TEXT NOT NULL, `id` INTEGER NOT NULL, `dose` INTEGER NOT NULL, `timesToTakePerDay` INTEGER NOT NULL, `prescribingDoc` TEXT, `phoneNumber` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "bottleID",
+            "columnName": "bottleID",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "consumableID",
+            "columnName": "consumableID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "quantityInBottle",
+            "columnName": "quantityInBottle",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "expirationDate",
+            "columnName": "expirationDate",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "startDate",
+            "columnName": "startDate",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "cabinetID",
+            "columnName": "cabinetID",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "prescription.id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "prescription.dose",
+            "columnName": "dose",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "prescription.timesToTakePerDay",
+            "columnName": "timesToTakePerDay",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "prescription.prescribingDoc",
+            "columnName": "prescribingDoc",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "prescription.phoneNumber",
+            "columnName": "phoneNumber",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "bottleID"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "consumables",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`name` TEXT NOT NULL, `measurementPerUnit` REAL NOT NULL, `form` TEXT NOT NULL, `medication` INTEGER NOT NULL, PRIMARY KEY(`name`, `measurementPerUnit`))",
+        "fields": [
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "measurementPerUnit",
+            "columnName": "measurementPerUnit",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "form",
+            "columnName": "form",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "medication",
+            "columnName": "medication",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "name",
+            "measurementPerUnit"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Prescription",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `dose` INTEGER NOT NULL, `timesToTakePerDay` INTEGER NOT NULL, `prescribingDoc` TEXT, `phoneNumber` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dose",
+            "columnName": "dose",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "timesToTakePerDay",
+            "columnName": "timesToTakePerDay",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "prescribingDoc",
+            "columnName": "prescribingDoc",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "phoneNumber",
+            "columnName": "phoneNumber",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '60bbbf13d40fb300c3a2571a9e8e3afb')"
+    ]
+  }
+}

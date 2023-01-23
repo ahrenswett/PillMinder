@@ -24,6 +24,7 @@ import androidx.navigation.navArgument
 import com.ahrenswett.pillminder.ui.add_edit_cabinet.AddEditCabinetEvent
 import com.ahrenswett.pillminder.util.BottleBuilder
 import com.ahrenswett.pillminder.util.UiEvent
+import com.ahrenswett.pillminder.util.WhatFormIsIt
 import kotlinx.coroutines.flow.collect
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -37,7 +38,6 @@ fun AddEditBottleScreen(
     val scaffoldState = rememberScaffoldState()
 
     LaunchedEffect(key1 = true) {
-//        focusRequester.requestFocus()
         viewModel.uiEvent.collect { event ->
             when (event) {
                 is UiEvent.PopBackStack -> onPopBackStack()
@@ -48,5 +48,5 @@ fun AddEditBottleScreen(
 
     //TODO: Validate form so that all fields are filled out before allowing user to save.
     // or just navigate through questions and allow user to save when they are done.
-    BottleBuilder(onDismiss = onPopBackStack , tabIndex = arguments!!.getInt("tabIndex"))
+    BottleBuilder(onDismiss = onPopBackStack , tabIndex = arguments!!.getInt("tabIndex"), viewModel)
 }

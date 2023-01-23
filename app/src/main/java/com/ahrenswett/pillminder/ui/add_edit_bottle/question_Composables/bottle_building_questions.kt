@@ -1,35 +1,54 @@
 package com.ahrenswett.pillminder.util
 
 import android.widget.Toast
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.node.modifierElementOf
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.navArgument
+import com.ahrenswett.pillminder.Navigation
+import com.ahrenswett.pillminder.ui.add_edit_bottle.AddEditBottleEvent
+import com.ahrenswett.pillminder.ui.add_edit_bottle.AddEditBottleScreen
+import com.ahrenswett.pillminder.ui.add_edit_bottle.AddEditBottleViewModel
+import com.ahrenswett.pillminder.ui.add_edit_cabinet.AddEditCabinetEvent
 
-//var showCustomDialog by remember {
-//    mutableStateOf(false)
-//}
-//if (showCustomDialog) {
-//    BottleBuilder({
-//        showCustomDialog = !showCustomDialog
+val questionsList = listOf(
+    "Which would you like to add?",
+    "What form is the",
+
+)
+
+
+//  Create a temp bottle to hold bottle info before passing to VM bottle? This may help with editing
+
+
+
+
+
+
 /********************************* Composable to get Name of and whether or not it is medication or Supplement *********************************/
 @Composable
-fun BottleBuilder(onDismiss: () -> Unit, tabIndex: Int) {
-    val context = LocalContext.current
-    var consumableName by remember { mutableStateOf("") }
+fun BottleBuilder(onDismiss: () -> Unit, tabIndex: Int, viewModel: AddEditBottleViewModel) {
     val consumableTypesList = listOf("Medication","Supplement")
+    val context = LocalContext.current
+    val focusRequester = remember { FocusRequester() }
 
-    Dialog(onDismissRequest = { onDismiss }) {
+
+    Dialog( onDismissRequest = { onDismiss() }) {
         Card(
             shape = RoundedCornerShape(10.dp),
             modifier = Modifier.padding(8.dp),
@@ -54,16 +73,20 @@ fun BottleBuilder(onDismiss: () -> Unit, tabIndex: Int) {
                         Text(text = option, fontSize = 15.sp,)
                     }
                 }
+
                 OutlinedTextField(
-                    value = consumableName,
-                    onValueChange = { consumableName = it },
-                    modifier = Modifier.padding(8.dp),
+                    value = viewModel.name,
+                    onValueChange = {
+                        viewModel.onEvent(AddEditBottleEvent.OnNameChange(it))
+                    },
                     keyboardActions = KeyboardActions(onDone = {
-                        Toast.makeText(context, consumableName, Toast.LENGTH_SHORT).show()
                         onDismiss()
                     }),
                     singleLine = true,
-                    label = { Text(text = "Enter a name") }
+                    modifier = Modifier
+                        .padding(8.dp)
+                        .focusRequester(focusRequester),
+//                    label = { Text(text = "Enter the $selectedOption name") }
                 )
                 Row {
                     //Cancel Button
@@ -76,10 +99,12 @@ fun BottleBuilder(onDismiss: () -> Unit, tabIndex: Int) {
                     ) {
                         Text(text = "Cancel")
                     }
+
                     //Submit Button
                     Button(
                         onClick = {
-                            Toast.makeText(context, consumableName, Toast.LENGTH_SHORT).show()
+//                            viewModel.onEvent(AddEditBottleEvent.OnNameChange())
+                            Toast.makeText(context, viewModel.name, Toast.LENGTH_SHORT).show()
                             onDismiss()
                         },
                         Modifier
@@ -87,7 +112,7 @@ fun BottleBuilder(onDismiss: () -> Unit, tabIndex: Int) {
                             .padding(8.dp)
                             .weight(1F)
                     ) {
-                        Text(text = "Submit")
+                        Text(text = "Next")
                     }
                 }
             }

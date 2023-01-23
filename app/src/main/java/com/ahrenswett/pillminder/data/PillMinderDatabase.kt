@@ -1,5 +1,6 @@
 package com.ahrenswett.pillminder.data
 
+import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
@@ -14,17 +15,18 @@ import com.ahrenswett.pillminder.domain.model.Prescription
 
 
 @Database(entities = [
-//    User::class,
     Cabinet::class,
     Bottle::class,
     Consumable::class,
     Prescription::class
-], version = 1)
+], version = 1
+)
+
+
 @TypeConverters(Converters::class)
 
 abstract class PillMinderDatabase : RoomDatabase() {
     abstract val cabinetDAO: CabinetDAO
     abstract val bottleDAO: BottleDAO
     abstract val consumableDAO: ConsumableDAO
-
 }

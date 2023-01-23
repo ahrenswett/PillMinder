@@ -26,7 +26,6 @@ class AddEditBottleViewModel @Inject constructor(
     private val consumableRepo: ConsumableRepo,
     savedStateHandle: SavedStateHandle,
 //    val questions : List<String> = listOf<String>(
-//        "Is this a medication?",
 //        "What is the name of the bottle contents?",
 //        "How many servings are in the bottle?",
 //        "What is the form of this item",
@@ -148,7 +147,6 @@ class AddEditBottleViewModel @Inject constructor(
             }
         }
     }
-
 
     private fun sendUiEvent(event: UiEvent){
         viewModelScope.launch {

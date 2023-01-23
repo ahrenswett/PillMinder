@@ -30,6 +30,8 @@ class AddEditCabinetViewModel @Inject constructor(
     var name by mutableStateOf("")
         private set
 
+
+
     //Event sending to UI
     private val _uiEvents = Channel<UiEvent>()
     val uiEvent = _uiEvents.receiveAsFlow()

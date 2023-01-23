@@ -40,11 +40,13 @@ import com.ahrenswett.pillminder.data.type_converters.Converters
 import com.ahrenswett.pillminder.domain.model.Bottle
 import com.ahrenswett.pillminder.domain.model.Cabinet
 import com.ahrenswett.pillminder.domain.model.Prescription
+import com.ahrenswett.pillminder.ui.add_edit_bottle.AddEditBottleEvent
 import com.ahrenswett.pillminder.ui.add_edit_cabinet.AddEditCabinetEvent
 import com.ahrenswett.pillminder.ui.cabinet_list.CabinetListEvent
 import com.ahrenswett.pillminder.util.UiEvent
 import com.ahrenswett.pillminder.util.WhatFormIsIt
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.count
 
 /*TODO:
 *   - Add Floating action button to add bottles
@@ -66,10 +68,12 @@ fun CabinetViewScreen(
     onPopBackStack: () -> Unit,
     viewModel : CabinetViewViewModel = hiltViewModel(),
 ){
-//    val context = LocalContext.current
+
+    val bottles = viewModel.bottles.collectAsState(initial = emptyList())
     val scaffoldState = rememberScaffoldState()
 
     val context = LocalContext.current
+
 //    bottom bar tab data
     var tabIndex by remember { mutableStateOf(0)}
     val tabTitles = listOf("Medications","Supplements")
@@ -80,23 +84,9 @@ fun CabinetViewScreen(
     var showCustomDialog by remember {
         mutableStateOf(false)
     }
-    val testList = listOf(
-        Bottle(
-            "depakote",
-            100,
-            Prescription(1,2000,2,"Dr. Christopher Ransom",null),
-            "3-3-2052",
-            "5-8-2022",
-            "Llama2"),
-        Bottle(
-            "mushies",
-            100,
-            Prescription(1,2,2,"Dr. Christopher Ransom",null),
-            "3-3-2052",
-            "5-8-2022",
-            "Llama2")
+
 //    TODO: Link the consumable as well
-    )
+
 
     LaunchedEffect(key1 = true){
         viewModel.uiEvent.collect { event ->
@@ -145,110 +135,21 @@ fun CabinetViewScreen(
         }
     ){
 
-//      Main section: Displays Meds or suplements based on tab selection
+//      Main section: Displays Meds or supplements based on tab selection
         LazyColumn(modifier = Modifier.fillMaxSize()) {
-
-//          TODO: Should be a list from the view model
-            items(testList.size){ bottle ->
+            items(bottles.value.size){ bottle ->
                 CabinetViewItem(
-                    bottle = testList[bottle],
+                    bottle = bottles.value[bottle],
                     onEvent = viewModel::onEvent,
                     modifier = Modifier
                         .fillMaxWidth()
 //                  TODO(go to Bottle View)
-                        .clickable{ (Toast.makeText(context,testList[bottle].consumableID,Toast.LENGTH_LONG).show())}
+                        .clickable{ (Toast.makeText(context,bottles.value[bottle].consumableID,Toast.LENGTH_LONG).show())}
                 )
             }
         }
     }
 }
-
-
-//            floatingActionButton = {/*TODO: Move all logic with Dialog to Events and Add edit bottle*/
-//                FloatingActionButton(
-//                    onClick = { showCustomDialog = !showCustomDialog },
-//                    modifier = Modifier.wrapContentSize()
-//                ){ Icon(imageVector = Icons.Default.Add, contentDescription = "Add") }
-//            }
-//            ){
-
-//                        if (showCustomDialog) {
-//                            BottleBuilder({
-//                                showCustomDialog = !showCustomDialog
-//                            },tabTitles,tabIndex)
-//                        }
-
-
-
-//@Composable
-//fun BottleBuilder(onDismiss:()->Unit, radioOptions: List<String>,tabIndex: Int ){
-//    val context = LocalContext.current
-//    var consumableName by remember { mutableStateOf("") }
-//
-//    Dialog(onDismissRequest = { onDismiss }) {
-//        Card(
-//            shape = RoundedCornerShape(10.dp),
-//            modifier = Modifier.padding(8.dp),
-//            elevation = 8.dp
-//        ) {
-//            //Variables for radio buttons that allow choice of supplement or medication
-//            val (selectedOption, onOptionSelected) = remember { mutableStateOf(radioOptions[tabIndex] ) }
-//
-//            Column() {
-//                Text(
-//                    text = "Which would you like to add?",
-//                    modifier = Modifier.padding(8.dp),
-//                    fontSize = 20.sp
-//                )
-//
-//                Row(verticalAlignment = Alignment.CenterVertically){
-//                    radioOptions.forEach { option ->
-//                        RadioButton(
-//                            selected = (option == selectedOption),
-//                            onClick = { onOptionSelected(option) },
-//                        )
-//                        Text(text = option.dropLast(1), fontSize = 15.sp,)
-//                    }
-//                }
-//                OutlinedTextField(
-//                    value = consumableName,
-//                    onValueChange = {consumableName = it},
-//                    modifier = Modifier.padding(8.dp),
-//                    keyboardActions = KeyboardActions(onDone = {
-//                        Toast.makeText(context, consumableName, Toast.LENGTH_SHORT).show()
-//                        onDismiss() }),
-//                    singleLine = true,
-//                    label = { Text(text = "Enter a name")}
-//                )
-//                Row {
-//                    //Cancel Button
-//                    OutlinedButton(
-//                        onClick = { onDismiss() },
-//                        Modifier
-//                            .fillMaxWidth()
-//                            .padding(8.dp)
-//                            .weight(1F)
-//                    ) {
-//                        Text(text = "Cancel")
-//                    }
-//                    //Submit Button
-//                    Button(
-//                        onClick = {
-//
-//                            Toast.makeText(context, consumableName, Toast.LENGTH_SHORT).show()
-//                            onDismiss() },
-//                        Modifier
-//                            .fillMaxWidth()
-//                            .padding(8.dp)
-//                            .weight(1F)
-//                    ) {
-//                        Text(text = "Submit")
-//                    }
-//                }
-//            }
-//        }
-//    }
-//}
 
 
 

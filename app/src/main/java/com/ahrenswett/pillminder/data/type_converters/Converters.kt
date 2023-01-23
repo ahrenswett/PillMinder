@@ -15,8 +15,8 @@ import java.util.*
 
 object Converters {
 
-//**************************** CANANDER CONVERTERS ****************************//
-        /* REFERENCE FOR CALANDER CONVERTER:
+//**************************** CALENDER CONVERTERS ****************************//
+        /* REFERENCE FOR CALENDER CONVERTER:
         https://stackoverflow.com/questions/54748483/calendar-typeconverter-for-room-kotlin   */
 
         @TypeConverter
@@ -28,7 +28,7 @@ object Converters {
 
 //**************************** LIST CONVERTERS ****************************//
 // TODO: these list converters seem like they could be optimized to make it DRY
-//    will need to see how room calls ty converters first. Then maybe a when?
+//    will need to see how room calls the converters first. Then maybe a when?
 
         @TypeConverter
         fun bottleListToJson(bottleList: List<Bottle>): String {
